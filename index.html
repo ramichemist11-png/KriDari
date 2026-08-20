@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -14,8 +15,10 @@ body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f5f7f6;color:#1720
 button,input,select,textarea{font:inherit}
 button{border:0;cursor:pointer;border-radius:10px;padding:12px 17px;background:#176b5b;color:#fff}
 button:hover{opacity:.92}
+button:disabled{opacity:.6;cursor:not-allowed}
 button.secondary{background:#edf3f1;color:#176b5b}
 button.danger{background:#fff0f0;color:#b42318}
+button.warning{background:#fff4d6;color:#8a5a00}
 
 header{
 background:#fff;padding:16px 6%;display:flex;align-items:center;
@@ -28,15 +31,13 @@ box-shadow:0 2px 10px #0000000b
 .nav{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
 .user{font-size:14px}
 
-.hero{
-background:#176b5b;color:#fff;text-align:center;padding:65px 20px
-}
+.hero{background:#176b5b;color:#fff;text-align:center;padding:65px 20px}
 .hero h1{font-size:42px;margin:0 0 15px}
 .hero p{font-size:19px;margin-bottom:30px}
 
 .search{
-max-width:1000px;margin:auto;background:#fff;padding:14px;border-radius:16px;
-display:grid;grid-template-columns:1fr 1fr 1fr 1.5fr auto;gap:8px
+max-width:1100px;margin:auto;background:#fff;padding:14px;border-radius:16px;
+display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1.5fr auto;gap:8px
 }
 
 input,select,textarea{
@@ -67,7 +68,11 @@ position:relative;overflow:hidden
 .card-image img{width:100%;height:100%;object-fit:cover}
 .badge{
 position:absolute;top:12px;right:12px;background:#fff;color:#176b5b;
-padding:6px 10px;border-radius:20px;font-size:12px
+padding:6px 10px;border-radius:20px;font-size:12px;z-index:2
+}
+.period-badge{
+position:absolute;bottom:12px;right:12px;background:#176b5bdd;color:#fff;
+padding:6px 10px;border-radius:20px;font-size:12px;z-index:2
 }
 .card-body{padding:17px}
 .price{font-size:20px;font-weight:bold;color:#176b5b}
@@ -85,7 +90,7 @@ z-index:100;align-items:center;justify-content:center;padding:18px
 }
 .modal.show{display:flex}
 .box{
-background:#fff;width:min(680px,100%);max-height:92vh;overflow:auto;
+background:#fff;width:min(760px,100%);max-height:92vh;overflow:auto;
 border-radius:18px;padding:25px;position:relative
 }
 .close{
@@ -118,6 +123,36 @@ display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-bottom:18px
 .gallery-side{display:grid;gap:8px}
 .gallery-side img{height:126px}
 
+.admin-card{
+border:1px solid #e0e5e3;border-radius:14px;padding:15px;margin-bottom:15px;
+background:#fafcfb
+}
+.admin-images{
+display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:12px 0
+}
+.admin-images img{
+width:100%;height:100px;object-fit:cover;border-radius:8px
+}
+.status{
+display:inline-block;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:bold
+}
+.status.pending{background:#fff4d6;color:#8a5a00}
+.status.approved{background:#e5f7ed;color:#137a45}
+.status.rejected{background:#fff0f0;color:#b42318}
+
+.admin-actions{
+display:flex;gap:8px;flex-wrap:wrap;margin-top:12px
+}
+.admin-actions button{flex:1;min-width:130px}
+
+.stat-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px
+}
+.stat{
+background:#f5f8f7;border-radius:12px;padding:15px;text-align:center
+}
+.stat strong{display:block;font-size:24px;color:#176b5b;margin-top:5px}
+
 .toast{
 display:none;position:fixed;bottom:25px;left:50%;
 transform:translateX(-50%);z-index:300;background:#172033;
@@ -127,6 +162,11 @@ color:#fff;padding:13px 20px;border-radius:10px
 
 footer{
 background:#172033;color:#fff;text-align:center;padding:30px;margin-top:30px
+}
+
+@media(max-width:950px){
+.search{grid-template-columns:1fr 1fr}
+.cards{grid-template-columns:1fr 1fr}
 }
 
 @media(max-width:850px){
@@ -140,6 +180,12 @@ header{flex-direction:column}
 .gallery img{height:220px}
 .gallery-side{display:grid;grid-template-columns:1fr 1fr}
 .gallery-side img{height:110px}
+.stat-grid{grid-template-columns:1fr 1fr}
+.admin-images{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:500px){
+.stat-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -147,80 +193,84 @@ header{flex-direction:column}
 <body>
 
 <header>
-  <div class="logo">Kri<span>Dari</span></div>
-  <div class="nav" id="nav"></div>
+<div class="logo">Kri<span>Dari</span></div>
+<div class="nav" id="nav"></div>
 </header>
 
 <section class="hero">
-  <h1>🏠 لقّي دارك بسهولة</h1>
-  <p>منصة كراء الشقق والعقارات في الجزائر</p>
+<h1>🏠 لقّي دارك بسهولة</h1>
+<p>منصة كراء الشقق والعقارات في الجزائر</p>
 
-  <div class="search">
+<div class="search">
 
-    <select id="searchWilaya">
-      <option value="">كل الولايات</option>
-      <option>الجزائر</option>
-      <option>وهران</option>
-      <option>قسنطينة</option>
-      <option>غليزان</option>
-      <option>عنابة</option>
-      <option>سطيف</option>
-      <option>مستغانم</option>
-      <option>تلمسان</option>
-      <option>الشلف</option>
-      <option>البليدة</option>
-      <option>بجاية</option>
-      <option>تيزي وزو</option>
-      <option>سيدي بلعباس</option>
-    </select>
+<select id="searchWilaya">
+<option value="">كل الولايات</option>
+<option>الجزائر</option>
+<option>وهران</option>
+<option>قسنطينة</option>
+<option>غليزان</option>
+<option>عنابة</option>
+<option>سطيف</option>
+<option>مستغانم</option>
+<option>تلمسان</option>
+<option>الشلف</option>
+<option>البليدة</option>
+<option>بجاية</option>
+<option>تيزي وزو</option>
+<option>سيدي بلعباس</option>
+</select>
 
-    <select id="searchType">
-      <option value="">كل الأنواع</option>
-      <option>F1</option>
-      <option>F2</option>
-      <option>F3</option>
-      <option>F4</option>
-      <option>F5</option>
-      <option>Villa</option>
-      <option>Studio</option>
-      <option>Duplex</option>
-      <option>Local commercial</option>
-      <option>Terrain</option>
-    </select>
+<select id="searchType">
+<option value="">كل الأنواع</option>
+<option>F1</option>
+<option>F2</option>
+<option>F3</option>
+<option>F4</option>
+<option>F5</option>
+<option>Villa</option>
+<option>Studio</option>
+<option>Duplex</option>
+<option>Local commercial</option>
+<option>Terrain</option>
+</select>
 
-    <input id="searchPrice" type="number" placeholder="أقصى سعر DA">
+<select id="searchPeriod">
+<option value="">كل فترات الكراء</option>
+<option value="daily">يومي</option>
+<option value="monthly">شهري</option>
+<option value="yearly">سنوي</option>
+</select>
 
-    <input id="searchText" placeholder="المدينة أو العنوان">
+<input id="searchPrice" type="number" placeholder="أقصى سعر DA">
+<input id="searchText" placeholder="المدينة أو العنوان">
 
-    <button onclick="searchProperties()">🔎 بحث</button>
+<button onclick="searchProperties()">🔎 بحث</button>
 
-  </div>
+</div>
 </section>
 
 <main>
+<div class="title-row">
+<h2>العقارات المتاحة</h2>
+<span id="count" class="muted"></span>
+</div>
 
-  <div class="title-row">
-    <h2>العقارات المتاحة</h2>
-    <span id="count" class="muted"></span>
-  </div>
-
-  <div id="cards" class="cards"></div>
-
+<div id="cards" class="cards"></div>
 </main>
 
 <footer>
-  <strong>KriDari</strong>
-  <br>
-  منصة كراء العقارات في الجزائر
-  <br><br>
-  © 2026 KriDari
+<strong>KriDari</strong>
+<br>
+منصة كراء العقارات في الجزائر
+<br><br>
+© 2026 KriDari
 </footer>
 
 <div id="modal" class="modal">
-  <div class="box">
-    <button class="close" onclick="closeModal()">×</button>
-    <div id="modalContent"></div>
-  </div>
+<div class="box">
+<button class="close" onclick="closeModal()">×</button>
+<div id="modalContent"></div>
+</div>
 </div>
 
 <div id="toast" class="toast"></div>
@@ -239,8 +289,8 @@ const SUPABASE_KEY =
 
 const supabaseClient =
 window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
@@ -249,6 +299,7 @@ window.supabase.createClient(
 ===================================================== */
 
 let currentUser = null;
+let currentProfile = null;
 let currentProperties = [];
 let selectedFiles = [];
 let mainImageIndex = 0;
@@ -260,55 +311,120 @@ let mainImageIndex = 0;
 
 function escapeHTML(value){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+function periodLabel(period){
+
+if(period === "daily") return "يومي";
+if(period === "yearly") return "سنوي";
+
+return "شهري";
+
+}
+
+
+function periodSuffix(period){
+
+if(period === "daily") return " / يوم";
+if(period === "yearly") return " / سنة";
+
+return " / شهر";
+
+}
+
+
+function formatPrice(price,period){
+
+return Number(price || 0).toLocaleString("fr-DZ")
++ " DA"
++ periodSuffix(period);
 
 }
 
 
 function toast(message){
 
-  const el = document.getElementById("toast");
+const el = document.getElementById("toast");
 
-  el.textContent = message;
-  el.classList.add("show");
+el.textContent = message;
+el.classList.add("show");
 
-  setTimeout(() => {
-    el.classList.remove("show");
-  },3000);
+setTimeout(() => {
+el.classList.remove("show");
+},3000);
 
 }
 
 
 function openModal(html){
 
-  document.getElementById("modalContent").innerHTML = html;
-  document.getElementById("modal").classList.add("show");
+document.getElementById("modalContent").innerHTML = html;
+document.getElementById("modal").classList.add("show");
 
 }
 
 
 function closeModal(){
 
-  document.getElementById("modal").classList.remove("show");
+document.getElementById("modal").classList.remove("show");
 
 }
 
 
 document.getElementById("modal").addEventListener(
-  "click",
-  function(e){
+"click",
+function(e){
 
-    if(e.target === this){
-      closeModal();
-    }
+if(e.target === this){
+closeModal();
+}
 
-  }
+}
 );
+
+
+/* =====================================================
+   PROFILE / ADMIN
+===================================================== */
+
+async function loadProfile(){
+
+if(!currentUser){
+currentProfile = null;
+return;
+}
+
+const {data,error} =
+await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+if(error){
+console.error(error);
+currentProfile = null;
+return;
+}
+
+currentProfile = data || null;
+
+}
+
+
+function isAdmin(){
+
+return currentProfile?.role === "admin";
+
+}
 
 
 /* =====================================================
@@ -317,361 +433,338 @@ document.getElementById("modal").addEventListener(
 
 async function loadUser(){
 
-  const {
-    data:{session}
-  } = await supabaseClient.auth.getSession();
+const {
+data:{session}
+} = await supabaseClient.auth.getSession();
 
-  currentUser = session?.user || null;
+currentUser = session?.user || null;
 
-  updateNav();
+await loadProfile();
+
+updateNav();
 
 }
 
 
 supabaseClient.auth.onAuthStateChange(
-  async (event,session) => {
+async (event,session) => {
 
-    currentUser = session?.user || null;
+currentUser = session?.user || null;
 
-    updateNav();
+await loadProfile();
 
-    if(event === "SIGNED_IN"){
-      await loadProperties();
-    }
+updateNav();
 
-  }
+if(event === "SIGNED_IN"){
+await loadProperties();
+}
+
+}
 );
 
 
 function updateNav(){
 
-  const nav = document.getElementById("nav");
+const nav = document.getElementById("nav");
 
-  if(currentUser){
+if(currentUser){
 
-    const name =
-      currentUser.user_metadata?.full_name ||
-      currentUser.email?.split("@")[0] ||
-      "مستخدم";
+const name =
+currentUser.user_metadata?.full_name ||
+currentUser.email?.split("@")[0] ||
+"مستخدم";
 
-    nav.innerHTML = `
+nav.innerHTML = `
 
-      <span class="user">
-        مرحبًا <strong>${escapeHTML(name)}</strong>
-      </span>
+<span class="user">
+مرحبًا <strong>${escapeHTML(name)}</strong>
+</span>
 
-      <button onclick="openAddProperty()">
-        + أضف عقارك
-      </button>
+<button onclick="openAddProperty()">
++ أضف عقارك
+</button>
 
-      <button
-        class="secondary"
-        onclick="showMyProperties()">
-        عقاراتي
-      </button>
+<button class="secondary"
+onclick="showMyProperties()">
+عقاراتي
+</button>
 
-      <button
-        class="secondary"
-        onclick="logout()">
-        خروج
-      </button>
+${
+isAdmin()
+?
+`<button onclick="openAdminDashboard()">
+🛡️ لوحة الإدارة
+</button>`
+:
+""
+}
 
-    `;
+<button class="secondary"
+onclick="logout()">
+خروج
+</button>
 
-  }else{
+`;
 
-    nav.innerHTML = `
+}else{
 
-      <button onclick="openAddProperty()">
-        + أضف عقارك
-      </button>
+nav.innerHTML = `
 
-      <button
-        class="secondary"
-        onclick="openLogin()">
-        تسجيل الدخول
-      </button>
+<button onclick="openAddProperty()">
++ أضف عقارك
+</button>
 
-      <button
-        class="secondary"
-        onclick="openRegister()">
-        إنشاء حساب
-      </button>
+<button class="secondary"
+onclick="openLogin()">
+تسجيل الدخول
+</button>
 
-    `;
+<button class="secondary"
+onclick="openRegister()">
+إنشاء حساب
+</button>
 
-  }
+`;
+
+}
 
 }
 
 
 function openLogin(){
 
-  openModal(`
+openModal(`
 
-    <h2>🔐 تسجيل الدخول</h2>
+<h2>🔐 تسجيل الدخول</h2>
 
-    <div class="form-group">
-      <label>البريد الإلكتروني</label>
-      <input id="loginEmail" type="email"
-        placeholder="example@email.com">
-    </div>
+<div class="form-group">
+<label>البريد الإلكتروني</label>
+<input id="loginEmail" type="email"
+placeholder="example@email.com">
+</div>
 
-    <div class="form-group">
-      <label>كلمة المرور</label>
-      <input id="loginPassword" type="password"
-        placeholder="كلمة المرور">
-    </div>
+<div class="form-group">
+<label>كلمة المرور</label>
+<input id="loginPassword" type="password"
+placeholder="كلمة المرور">
+</div>
 
-    <div class="modal-actions">
+<div class="modal-actions">
 
-      <button onclick="login()">
-        دخول
-      </button>
+<button onclick="login()">دخول</button>
 
-      <button class="secondary"
-        onclick="openRegister()">
-        إنشاء حساب
-      </button>
+<button class="secondary"
+onclick="openRegister()">
+إنشاء حساب
+</button>
 
-    </div>
+</div>
 
-  `);
+`);
 
 }
 
 
 async function login(){
 
-  const email =
-    document.getElementById("loginEmail").value.trim();
+const email =
+document.getElementById("loginEmail").value.trim();
 
-  const password =
-    document.getElementById("loginPassword").value;
+const password =
+document.getElementById("loginPassword").value;
 
-  if(!email || !password){
+if(!email || !password){
 
-    toast("أدخل البريد وكلمة المرور");
+toast("أدخل البريد وكلمة المرور");
+return;
 
-    return;
+}
 
-  }
+const {error} =
+await supabaseClient.auth.signInWithPassword({
+email,
+password
+});
 
+if(error){
 
-  const {error} =
-    await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
+toast(error.message);
+return;
 
+}
 
-  if(error){
+closeModal();
 
-    toast(error.message);
-
-    return;
-
-  }
-
-
-  closeModal();
-
-  toast("تم تسجيل الدخول بنجاح ✅");
+toast("تم تسجيل الدخول بنجاح ✅");
 
 }
 
 
 function openRegister(){
 
-  openModal(`
+openModal(`
 
-    <h2>📝 إنشاء حساب</h2>
+<h2>📝 إنشاء حساب</h2>
 
-    <div class="form-group">
-      <label>الاسم الكامل</label>
-      <input id="regName"
-        placeholder="اسمك الكامل">
-    </div>
+<div class="form-group">
+<label>الاسم الكامل</label>
+<input id="regName" placeholder="اسمك الكامل">
+</div>
 
-    <div class="form-group">
-      <label>رقم الهاتف</label>
-      <input id="regPhone"
-        type="tel"
-        placeholder="05xxxxxxxx">
-    </div>
+<div class="form-group">
+<label>رقم الهاتف</label>
+<input id="regPhone" type="tel"
+placeholder="05xxxxxxxx">
+</div>
 
-    <div class="form-group">
-      <label>البريد الإلكتروني</label>
-      <input id="regEmail"
-        type="email"
-        placeholder="example@email.com">
-    </div>
+<div class="form-group">
+<label>البريد الإلكتروني</label>
+<input id="regEmail" type="email"
+placeholder="example@email.com">
+</div>
 
-    <div class="form-group">
-      <label>كلمة المرور</label>
-      <input id="regPassword"
-        type="password"
-        placeholder="6 أحرف على الأقل">
-    </div>
+<div class="form-group">
+<label>كلمة المرور</label>
+<input id="regPassword" type="password"
+placeholder="6 أحرف على الأقل">
+</div>
 
-    <div class="modal-actions">
+<div class="modal-actions">
 
-      <button onclick="register()">
-        إنشاء الحساب
-      </button>
+<button onclick="register()">إنشاء الحساب</button>
 
-      <button class="secondary"
-        onclick="openLogin()">
-        لدي حساب
-      </button>
+<button class="secondary"
+onclick="openLogin()">
+لدي حساب
+</button>
 
-    </div>
+</div>
 
-  `);
+`);
 
 }
 
 
 async function register(){
 
-  const name =
-    document.getElementById("regName").value.trim();
+const name =
+document.getElementById("regName").value.trim();
 
-  const phone =
-    document.getElementById("regPhone").value.trim();
+const phone =
+document.getElementById("regPhone").value.trim();
 
-  const email =
-    document.getElementById("regEmail").value.trim();
+const email =
+document.getElementById("regEmail").value.trim();
 
-  const password =
-    document.getElementById("regPassword").value;
+const password =
+document.getElementById("regPassword").value;
 
+if(!name || !phone || !email || !password){
 
-  if(!name || !phone || !email || !password){
+toast("يرجى ملء جميع المعلومات");
+return;
 
-    toast("يرجى ملء جميع المعلومات");
+}
 
-    return;
+if(password.length < 6){
 
-  }
+toast("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+return;
 
+}
 
-  if(password.length < 6){
+const {data,error} =
+await supabaseClient.auth.signUp({
 
-    toast("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+email,
+password,
 
-    return;
+options:{
+data:{
+full_name:name,
+phone:phone
+}
+}
 
-  }
+});
 
+if(error){
 
-  const {
-    data,
-    error
-  } = await supabaseClient.auth.signUp({
+toast(error.message);
+return;
 
-    email,
-    password,
+}
 
-    options:{
-      data:{
-        full_name:name,
-        phone:phone
-      }
-    }
+closeModal();
 
-  });
-
-
-  if(error){
-
-    toast(error.message);
-
-    return;
-
-  }
-
-
-  closeModal();
-
-
-  if(data.session){
-
-    toast("تم إنشاء الحساب بنجاح 🎉");
-
-  }else{
-
-    toast(
-      "تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتفعيل الحساب."
-    );
-
-  }
+if(data.session){
+toast("تم إنشاء الحساب بنجاح 🎉");
+}else{
+toast("تم إنشاء الحساب. تحقق من بريدك الإلكتروني.");
+}
 
 }
 
 
 async function logout(){
 
-  await supabaseClient.auth.signOut();
+await supabaseClient.auth.signOut();
 
-  currentUser = null;
+currentUser = null;
+currentProfile = null;
 
-  updateNav();
+updateNav();
 
-  toast("تم تسجيل الخروج");
+toast("تم تسجيل الخروج");
 
 }
 
 
 /* =====================================================
-   LOAD PROPERTIES
+   LOAD APPROVED PROPERTIES
 ===================================================== */
 
 async function loadProperties(){
 
-  const {
-    data,
-    error
-  } = await supabaseClient
+const {data,error} =
+await supabaseClient
 
-    .from("properties")
+.from("properties")
 
-    .select(`
-      *,
-      property_images (
-        id,
-        image_path,
-        is_main,
-        sort_order
-      )
-    `)
+.select(`
+*,
+property_images (
+id,
+image_path,
+is_main,
+sort_order
+)
+`)
 
-    .eq("status","approved")
+.eq("status","approved")
 
-    .order("created_at",{
-      ascending:false
-    });
+.order("created_at",{
+ascending:false
+});
 
+if(error){
 
-  if(error){
+console.error(error);
 
-    console.error(error);
+document.getElementById("cards").innerHTML = `
+<div class="empty">
+<h3>حدث خطأ في تحميل العقارات</h3>
+<p>حاول تحديث الصفحة.</p>
+</div>
+`;
 
-    document.getElementById("cards").innerHTML = `
-      <div class="empty">
-        <h3>حدث خطأ في تحميل العقارات</h3>
-        <p>حاول تحديث الصفحة.</p>
-      </div>
-    `;
+return;
 
-    return;
+}
 
-  }
+currentProperties = data || [];
 
-
-  currentProperties = data || [];
-
-  renderProperties(currentProperties);
+renderProperties(currentProperties);
 
 }
 
@@ -682,16 +775,15 @@ async function loadProperties(){
 
 function imageURL(path){
 
-  if(!path) return "";
+if(!path) return "";
 
-  const {
-    data
-  } = supabaseClient
-    .storage
-    .from("property-images")
-    .getPublicUrl(path);
+const {data} =
+supabaseClient
+.storage
+.from("property-images")
+.getPublicUrl(path);
 
-  return data.publicUrl;
+return data.publicUrl;
 
 }
 
@@ -702,109 +794,107 @@ function imageURL(path){
 
 function renderProperties(list){
 
-  const cards =
-    document.getElementById("cards");
+const cards =
+document.getElementById("cards");
 
-  document.getElementById("count").textContent =
-    `${list.length} عقار`;
+document.getElementById("count").textContent =
+`${list.length} عقار`;
 
+if(!list.length){
 
-  if(!list.length){
+cards.innerHTML = `
+<div class="empty">
+<h3>لا توجد عقارات متاحة حاليًا</h3>
+<p>كن أول من يضيف عقارًا إلى KriDari.</p>
+</div>
+`;
 
-    cards.innerHTML = `
-      <div class="empty">
-        <h3>لا توجد عقارات متاحة حاليًا</h3>
-        <p>كن أول من يضيف عقارًا إلى KriDari.</p>
-      </div>
-    `;
+return;
 
-    return;
+}
 
-  }
+cards.innerHTML = list.map(p => {
 
+const images =
+(p.property_images || [])
+.sort((a,b) => (a.sort_order || 0) - (b.sort_order || 0));
 
-  cards.innerHTML = list.map(p => {
+const first =
+images.find(x => x.is_main) ||
+images[0];
 
-    const images =
-      (p.property_images || [])
-      .sort((a,b) => a.sort_order - b.sort_order);
+const image =
+first ? imageURL(first.image_path) : "";
 
-    const first =
-      images.find(x => x.is_main) ||
-      images[0];
+return `
 
-    const image =
-      first ? imageURL(first.image_path) : "";
+<article class="card">
 
+<div class="card-image">
 
-    return `
+<span class="badge">
+${images.length ? `📷 ${images.length}` : "إعلان"}
+</span>
 
-      <article class="card">
+<span class="period-badge">
+${periodLabel(p.rental_period)}
+</span>
 
-        <div class="card-image">
+${
+image
+?
+`<img src="${image}" alt="${escapeHTML(p.title)}">`
+:
+`<div style="
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;">
+🏠
+</div>`
+}
 
-          <span class="badge">
-            ${images.length ? `📷 ${images.length}` : "إعلان"}
-          </span>
+</div>
 
-          ${
-            image
-            ? `<img src="${image}" alt="${escapeHTML(p.title)}">`
-            : `<div style="
-                height:100%;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                font-size:60px;">
-                🏠
-              </div>`
-          }
+<div class="card-body">
 
-        </div>
+<div class="price">
+${formatPrice(p.price,p.rental_period)}
+</div>
 
-        <div class="card-body">
+<h3>${escapeHTML(p.title)}</h3>
 
-          <div class="price">
-            ${Number(p.price).toLocaleString("fr-DZ")}
-            DA / شهر
-          </div>
+<p class="muted">
+📍 ${escapeHTML(p.city || "")}،
+${escapeHTML(p.wilaya)}
+</p>
 
-          <h3>
-            ${escapeHTML(p.title)}
-          </h3>
+<p class="muted">
+${escapeHTML(p.property_type)}
+· ${p.rooms || 1} غرف
+· ${p.furnished ? "مفروشة" : "غير مفروشة"}
+</p>
 
-          <p class="muted">
-            📍 ${escapeHTML(p.city || "")}،
-            ${escapeHTML(p.wilaya)}
-          </p>
+<div class="actions">
 
-          <p class="muted">
-            ${escapeHTML(p.property_type)}
-            · ${p.rooms || 1} غرف
-            · ${p.furnished ? "مفروشة" : "غير مفروشة"}
-          </p>
+<button onclick="showDetails('${p.id}')">
+التفاصيل
+</button>
 
-          <div class="actions">
+<button class="secondary"
+onclick="favorite('${p.id}')">
+❤️
+</button>
 
-            <button onclick="showDetails('${p.id}')">
-              التفاصيل
-            </button>
+</div>
 
-            <button
-              class="secondary"
-              onclick="favorite('${p.id}')">
-              ❤️
-            </button>
+</div>
+</article>
 
-          </div>
+`;
 
-        </div>
-
-      </article>
-
-    `;
-
-  }).join("");
+}).join("");
 
 }
 
@@ -815,46 +905,42 @@ function renderProperties(list){
 
 function searchProperties(){
 
-  const wilaya =
-    document.getElementById("searchWilaya").value;
+const wilaya =
+document.getElementById("searchWilaya").value;
 
-  const type =
-    document.getElementById("searchType").value;
+const type =
+document.getElementById("searchType").value;
 
-  const price =
-    Number(document.getElementById("searchPrice").value);
+const period =
+document.getElementById("searchPeriod").value;
 
-  const text =
-    document.getElementById("searchText")
-    .value.trim()
-    .toLowerCase();
+const price =
+Number(document.getElementById("searchPrice").value);
 
+const text =
+document.getElementById("searchText")
+.value.trim()
+.toLowerCase();
 
-  const result =
-    currentProperties.filter(p => {
+const result =
+currentProperties.filter(p => {
 
-      const a =
-        !wilaya || p.wilaya === wilaya;
+const a = !wilaya || p.wilaya === wilaya;
+const b = !type || p.property_type === type;
+const c = !period || p.rental_period === period;
+const d = !price || Number(p.price) <= price;
 
-      const b =
-        !type || p.property_type === type;
+const combined =
+`${p.title} ${p.city || ""} ${p.wilaya} ${p.address || ""}`
+.toLowerCase();
 
-      const c =
-        !price || Number(p.price) <= price;
+const e = !text || combined.includes(text);
 
-      const combined =
-        `${p.title} ${p.city || ""} ${p.wilaya} ${p.address || ""}`
-        .toLowerCase();
+return a && b && c && d && e;
 
-      const d =
-        !text || combined.includes(text);
+});
 
-      return a && b && c && d;
-
-    });
-
-
-  renderProperties(result);
+renderProperties(result);
 
 }
 
@@ -865,183 +951,182 @@ function searchProperties(){
 
 function openAddProperty(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openModal(`
+openModal(`
 
-      <h2>🔐 تسجيل الدخول مطلوب</h2>
+<h2>🔐 تسجيل الدخول مطلوب</h2>
 
-      <p>
-        يجب إنشاء حساب أو تسجيل الدخول قبل إضافة عقارك.
-      </p>
+<p>
+يجب إنشاء حساب أو تسجيل الدخول قبل إضافة عقارك.
+</p>
 
-      <div class="modal-actions">
+<div class="modal-actions">
 
-        <button onclick="openLogin()">
-          تسجيل الدخول
-        </button>
+<button onclick="openLogin()">
+تسجيل الدخول
+</button>
 
-        <button class="secondary"
-          onclick="openRegister()">
-          إنشاء حساب
-        </button>
+<button class="secondary"
+onclick="openRegister()">
+إنشاء حساب
+</button>
 
-      </div>
+</div>
 
-    `);
+`);
 
-    return;
+return;
 
-  }
+}
 
+selectedFiles = [];
+mainImageIndex = 0;
 
-  selectedFiles = [];
-  mainImageIndex = 0;
+openModal(`
 
+<h2>🏠 أضف عقارك</h2>
 
-  openModal(`
+<div class="form-group">
+<label>عنوان الإعلان *</label>
+<input id="pTitle"
+placeholder="مثال: شقة F3 جميلة">
+</div>
 
-    <h2>🏠 أضف عقارك</h2>
+<div class="grid2">
 
-    <div class="form-group">
-      <label>عنوان الإعلان *</label>
-      <input id="pTitle"
-        placeholder="مثال: شقة F3 جميلة">
-    </div>
+<div class="form-group">
+<label>الولاية *</label>
 
-    <div class="grid2">
+<select id="pWilaya">
+<option value="">اختر الولاية</option>
+<option>الجزائر</option>
+<option>وهران</option>
+<option>قسنطينة</option>
+<option>غليزان</option>
+<option>عنابة</option>
+<option>سطيف</option>
+<option>مستغانم</option>
+<option>تلمسان</option>
+<option>الشلف</option>
+<option>البليدة</option>
+<option>بجاية</option>
+<option>تيزي وزو</option>
+<option>سيدي بلعباس</option>
+</select>
+</div>
 
-      <div class="form-group">
-        <label>الولاية *</label>
+<div class="form-group">
+<label>المدينة / البلدية *</label>
+<input id="pCity" placeholder="مثال: السانية">
+</div>
 
-        <select id="pWilaya">
-          <option value="">اختر الولاية</option>
-          <option>الجزائر</option>
-          <option>وهران</option>
-          <option>قسنطينة</option>
-          <option>غليزان</option>
-          <option>عنابة</option>
-          <option>سطيف</option>
-          <option>مستغانم</option>
-          <option>تلمسان</option>
-          <option>الشلف</option>
-          <option>البليدة</option>
-          <option>بجاية</option>
-          <option>تيزي وزو</option>
-          <option>سيدي بلعباس</option>
-        </select>
-      </div>
+<div class="form-group">
+<label>نوع العقار *</label>
 
-      <div class="form-group">
-        <label>المدينة / البلدية *</label>
-        <input id="pCity"
-          placeholder="مثال: السانية">
-      </div>
+<select id="pType">
+<option value="">اختر النوع</option>
+<option>F1</option>
+<option>F2</option>
+<option>F3</option>
+<option>F4</option>
+<option>F5</option>
+<option>Villa</option>
+<option>Studio</option>
+<option>Duplex</option>
+<option>Local commercial</option>
+<option>Terrain</option>
+</select>
+</div>
 
-      <div class="form-group">
-        <label>نوع العقار *</label>
+<div class="form-group">
+<label>عدد الغرف</label>
+<input id="pRooms" type="number" min="1" value="1">
+</div>
 
-        <select id="pType">
-          <option value="">اختر النوع</option>
-          <option>F1</option>
-          <option>F2</option>
-          <option>F3</option>
-          <option>F4</option>
-          <option>F5</option>
-          <option>Villa</option>
-          <option>Studio</option>
-          <option>Duplex</option>
-          <option>Local commercial</option>
-          <option>Terrain</option>
-        </select>
-      </div>
+<div class="form-group">
+<label>طبيعة الكراء *</label>
 
-      <div class="form-group">
-        <label>عدد الغرف</label>
-        <input id="pRooms"
-          type="number"
-          min="1"
-          value="1">
-      </div>
+<select id="pRentalPeriod">
+<option value="monthly">شهري</option>
+<option value="daily">يومي</option>
+<option value="yearly">سنوي</option>
+</select>
+</div>
 
-      <div class="form-group">
-        <label>السعر الشهري DA *</label>
-        <input id="pPrice"
-          type="number"
-          min="1"
-          placeholder="45000">
-      </div>
+<div class="form-group">
+<label>السعر *</label>
+<input id="pPrice"
+type="number"
+min="1"
+placeholder="مثال: 45000">
+</div>
 
-      <div class="form-group">
-        <label>الحالة</label>
+<div class="form-group">
+<label>الحالة</label>
 
-        <select id="pFurnished">
-          <option value="false">غير مفروشة</option>
-          <option value="true">مفروشة</option>
-        </select>
-      </div>
+<select id="pFurnished">
+<option value="false">غير مفروشة</option>
+<option value="true">مفروشة</option>
+</select>
+</div>
 
-    </div>
+</div>
 
-    <div class="form-group">
-      <label>العنوان</label>
-      <input id="pAddress"
-        placeholder="الحي، الشارع...">
-    </div>
+<div class="form-group">
+<label>العنوان</label>
+<input id="pAddress"
+placeholder="الحي، الشارع...">
+</div>
 
-    <div class="form-group">
-      <label>رقم الهاتف *</label>
-      <input id="pPhone"
-        type="tel"
-        placeholder="05xxxxxxxx"
-        value="${escapeHTML(
-          currentUser.user_metadata?.phone || ""
-        )}">
-    </div>
+<div class="form-group">
+<label>رقم الهاتف *</label>
+<input id="pPhone"
+type="tel"
+placeholder="05xxxxxxxx"
+value="${escapeHTML(currentUser.user_metadata?.phone || "")}">
+</div>
 
-    <div class="form-group">
-      <label>وصف العقار</label>
+<div class="form-group">
+<label>وصف العقار</label>
 
-      <textarea id="pDescription"
-        placeholder="اكتب تفاصيل العقار..."></textarea>
-    </div>
+<textarea id="pDescription"
+placeholder="اكتب تفاصيل العقار..."></textarea>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>
-        صور العقار *
-      </label>
+<label>صور العقار *</label>
 
-      <input
-        id="pImages"
-        type="file"
-        accept="image/jpeg,image/png,image/webp"
-        multiple
-        onchange="selectImages(event)"
-      >
+<input
+id="pImages"
+type="file"
+accept="image/jpeg,image/png,image/webp"
+multiple
+onchange="selectImages(event)">
 
-      <p class="muted">
-        يمكنك اختيار عدة صور. الحد الأقصى 5 MB للصورة.
-      </p>
+<p class="muted">
+يمكنك اختيار عدة صور. الحد الأقصى 5 MB للصورة.
+</p>
 
-      <div id="previews" class="previews"></div>
+<div id="previews" class="previews"></div>
 
-    </div>
+</div>
 
-    <div class="modal-actions">
+<div class="modal-actions">
 
-      <button onclick="publishProperty()">
-        🚀 نشر العقار
-      </button>
+<button onclick="publishProperty()">
+🚀 إرسال للمراجعة
+</button>
 
-      <button class="secondary"
-        onclick="closeModal()">
-        إلغاء
-      </button>
+<button class="secondary"
+onclick="closeModal()">
+إلغاء
+</button>
 
-    </div>
+</div>
 
-  `);
+`);
 
 }
 
@@ -1052,470 +1137,401 @@ function openAddProperty(){
 
 function selectImages(event){
 
-  const files =
-    Array.from(event.target.files || []);
+const files =
+Array.from(event.target.files || []);
 
+if(!files.length) return;
 
-  if(!files.length) return;
+for(const file of files){
 
+if(!file.type.startsWith("image/")){
+toast("يسمح فقط بملفات الصور");
+continue;
+}
 
-  for(const file of files){
+if(file.size > 5 * 1024 * 1024){
+toast(`الصورة ${file.name} أكبر من 5 MB`);
+continue;
+}
 
-    if(!file.type.startsWith("image/")){
+if(selectedFiles.length >= 10){
+toast("الحد الأقصى 10 صور");
+break;
+}
 
-      toast("يسمح فقط بملفات الصور");
+selectedFiles.push(file);
 
-      continue;
+}
 
-    }
-
-
-    if(file.size > 5 * 1024 * 1024){
-
-      toast(`الصورة ${file.name} أكبر من 5 MB`);
-
-      continue;
-
-    }
-
-
-    if(selectedFiles.length >= 10){
-
-      toast("الحد الأقصى 10 صور");
-
-      break;
-
-    }
-
-
-    selectedFiles.push(file);
-
-  }
-
-
-  renderPreviews();
+renderPreviews();
 
 }
 
 
 function renderPreviews(){
 
-  const container =
-    document.getElementById("previews");
+const container =
+document.getElementById("previews");
 
-  if(!container) return;
+if(!container) return;
 
-  container.innerHTML = "";
+container.innerHTML = "";
 
+selectedFiles.forEach((file,index) => {
 
-  selectedFiles.forEach((file,index) => {
+const url =
+URL.createObjectURL(file);
 
-    const url =
-      URL.createObjectURL(file);
+container.innerHTML += `
 
+<div class="preview">
 
-    container.innerHTML += `
+<img src="${url}">
 
-      <div class="preview">
+${
+index === mainImageIndex
+?
+`<div class="main-label">⭐ الرئيسية</div>`
+:
+""
+}
 
-        <img src="${url}">
+</div>
 
-        ${
-          index === mainImageIndex
-          ? `<div class="main-label">
-               ⭐ الرئيسية
-             </div>`
-          : ""
-        }
+`;
 
-      </div>
-
-    `;
-
-  });
+});
 
 }
 
 
 /* =====================================================
-   PUBLISH
+   PUBLISH PROPERTY
 ===================================================== */
 
 async function publishProperty(){
 
-  if(!currentUser){
+if(!currentUser){
+toast("يجب تسجيل الدخول");
+return;
+}
 
-    toast("يجب تسجيل الدخول");
+const title =
+document.getElementById("pTitle").value.trim();
 
-    return;
+const wilaya =
+document.getElementById("pWilaya").value;
 
-  }
+const city =
+document.getElementById("pCity").value.trim();
 
+const type =
+document.getElementById("pType").value;
 
-  const title =
-    document.getElementById("pTitle").value.trim();
+const rooms =
+Number(document.getElementById("pRooms").value);
 
-  const wilaya =
-    document.getElementById("pWilaya").value;
+const rentalPeriod =
+document.getElementById("pRentalPeriod").value;
 
-  const city =
-    document.getElementById("pCity").value.trim();
+const price =
+Number(document.getElementById("pPrice").value);
 
-  const type =
-    document.getElementById("pType").value;
+const furnished =
+document.getElementById("pFurnished").value === "true";
 
-  const rooms =
-    Number(document.getElementById("pRooms").value);
+const address =
+document.getElementById("pAddress").value.trim();
 
-  const price =
-    Number(document.getElementById("pPrice").value);
+const phone =
+document.getElementById("pPhone").value.trim();
 
-  const furnished =
-    document.getElementById("pFurnished").value === "true";
+const description =
+document.getElementById("pDescription").value.trim();
 
-  const address =
-    document.getElementById("pAddress").value.trim();
+if(
+!title ||
+!wilaya ||
+!city ||
+!type ||
+!rentalPeriod ||
+!price ||
+!phone
+){
 
-  const phone =
-    document.getElementById("pPhone").value.trim();
+toast("يرجى ملء جميع المعلومات الأساسية");
+return;
 
-  const description =
-    document.getElementById("pDescription").value.trim();
+}
 
+if(selectedFiles.length === 0){
 
-  if(
-    !title ||
-    !wilaya ||
-    !city ||
-    !type ||
-    !price ||
-    !phone
-  ){
+toast("أضف صورة واحدة على الأقل");
+return;
 
-    toast("يرجى ملء جميع المعلومات الأساسية");
+}
 
-    return;
+const publishButton =
+document.querySelector(
+"#modalContent .modal-actions button"
+);
 
-  }
+if(publishButton){
+publishButton.disabled = true;
+publishButton.textContent = "جاري الإرسال...";
+}
 
+try{
 
-  if(selectedFiles.length === 0){
+const {
+data:property,
+error:propertyError
+} = await supabaseClient
 
-    toast("أضف صورة واحدة على الأقل");
+.from("properties")
 
-    return;
+.insert({
 
-  }
+owner_id:currentUser.id,
+title,
+description,
+wilaya,
+city,
+address,
+property_type:type,
+rooms:rooms || 1,
+price,
+rental_period:rentalPeriod,
+furnished,
+phone,
+status:"pending"
 
+})
 
-  const publishButton =
-    document.querySelector(
-      "#modalContent .modal-actions button"
-    );
+.select()
+.single();
 
-  if(publishButton){
+if(propertyError){
+throw propertyError;
+}
 
-    publishButton.disabled = true;
-    publishButton.textContent = "جاري النشر...";
 
-  }
+/* Upload images */
 
+for(let i=0;i<selectedFiles.length;i++){
 
-  try{
+const file =
+selectedFiles[i];
 
-    /* Create property */
+const safeName =
+file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
 
-    const {
-      data:property,
-      error:propertyError
-    } = await supabaseClient
+const path =
+`${currentUser.id}/${property.id}/${crypto.randomUUID()}-${safeName}`;
 
-      .from("properties")
+const {
+error:uploadError
+} = await supabaseClient
 
-      .insert({
+.storage
 
-        owner_id:currentUser.id,
+.from("property-images")
 
-        title,
+.upload(path,file,{
 
-        description,
+cacheControl:"3600",
+upsert:false,
+contentType:file.type
 
-        wilaya,
+});
 
-        city,
+if(uploadError){
 
-        address,
+console.error(uploadError);
+continue;
 
-        property_type:type,
+}
 
-        rooms:rooms || 1,
+const {
+error:imageError
+} = await supabaseClient
 
-        price,
+.from("property_images")
 
-        furnished,
+.insert({
 
-        phone,
+property_id:property.id,
+image_path:path,
+is_main:i === mainImageIndex,
+sort_order:i
 
-        status:"pending"
+});
 
-      })
+if(imageError){
+console.error(imageError);
+}
 
-      .select()
+}
 
-      .single();
+closeModal();
 
+toast(
+"تم إرسال العقار للمراجعة بنجاح ✅"
+);
 
-    if(propertyError){
+selectedFiles = [];
 
-      throw propertyError;
+await loadProperties();
 
-    }
+}catch(error){
 
+console.error(error);
 
-    /* Upload images */
+toast(
+"حدث خطأ أثناء نشر العقار: " +
+(error.message || "")
+);
 
-    for(let i=0;i<selectedFiles.length;i++){
+if(publishButton){
 
-      const file =
-        selectedFiles[i];
+publishButton.disabled = false;
+publishButton.textContent = "🚀 إرسال للمراجعة";
 
+}
 
-      const safeName =
-        file.name
-          .replace(/[^a-zA-Z0-9._-]/g,"_");
-
-
-      const path =
-        `${currentUser.id}/${property.id}/${crypto.randomUUID()}-${safeName}`;
-
-
-      const {
-        error:uploadError
-      } = await supabaseClient
-
-        .storage
-
-        .from("property-images")
-
-        .upload(path,file,{
-
-          cacheControl:"3600",
-
-          upsert:false,
-
-          contentType:file.type
-
-        });
-
-
-      if(uploadError){
-
-        console.error(uploadError);
-
-        continue;
-
-      }
-
-
-      const {
-        error:imageError
-      } = await supabaseClient
-
-        .from("property_images")
-
-        .insert({
-
-          property_id:property.id,
-
-          image_path:path,
-
-          is_main:i === mainImageIndex,
-
-          sort_order:i
-
-        });
-
-
-      if(imageError){
-
-        console.error(imageError);
-
-      }
-
-    }
-
-
-    closeModal();
-
-    toast(
-      "تم إرسال العقار للمراجعة بنجاح ✅"
-    );
-
-
-    selectedFiles = [];
-
-    await loadProperties();
-
-
-  }catch(error){
-
-    console.error(error);
-
-    toast(
-      "حدث خطأ أثناء نشر العقار: " +
-      (error.message || "")
-    );
-
-
-    if(publishButton){
-
-      publishButton.disabled = false;
-      publishButton.textContent = "🚀 نشر العقار";
-
-    }
-
-  }
+}
 
 }
 
 
 /* =====================================================
-   DETAILS / GALLERY
+   DETAILS
 ===================================================== */
 
 function showDetails(id){
 
-  const property =
-    currentProperties.find(p => p.id === id);
+const property =
+currentProperties.find(p => p.id === id);
 
-  if(!property) return;
+if(!property) return;
 
+const images =
+(property.property_images || [])
+.sort((a,b) =>
+(a.sort_order || 0) -
+(b.sort_order || 0)
+);
 
-  const images =
-    (property.property_images || [])
-      .sort((a,b) => a.sort_order - b.sort_order);
+let gallery = "";
 
+if(images.length){
 
-  let gallery = "";
+const main =
+images.find(x => x.is_main) ||
+images[0];
 
+const others =
+images
+.filter(x => x.id !== main.id)
+.slice(0,4);
 
-  if(images.length){
+gallery = `
 
-    const main =
-      images.find(x => x.is_main) ||
-      images[0];
+<div class="gallery">
 
+<img src="${imageURL(main.image_path)}"
+alt="صورة العقار">
 
-    const others =
-      images
-        .filter(x => x.id !== main.id)
-        .slice(0,4);
+<div class="gallery-side">
 
+${others.map(x => `
 
-    gallery = `
+<img src="${imageURL(x.image_path)}"
+alt="صورة العقار">
 
-      <div class="gallery">
+`).join("")}
 
-        <img
-          src="${imageURL(main.image_path)}"
-          alt="صورة العقار">
+</div>
 
-        <div class="gallery-side">
+</div>
 
-          ${others.map(x => `
+`;
 
-            <img
-              src="${imageURL(x.image_path)}"
-              alt="صورة العقار">
+}else{
 
-          `).join("")}
+gallery = `
 
-        </div>
+<div style="
+height:230px;
+background:linear-gradient(135deg,#dce9e5,#efd7a8);
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:70px;
+margin-bottom:18px">
+🏠
+</div>
 
-      </div>
+`;
 
-    `;
+}
 
-  }else{
+openModal(`
 
-    gallery = `
+<h2>${escapeHTML(property.title)}</h2>
 
-      <div style="
-        height:230px;
-        background:linear-gradient(135deg,#dce9e5,#efd7a8);
-        border-radius:12px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:70px;
-        margin-bottom:18px">
-        🏠
-      </div>
+${gallery}
 
-    `;
+<p>
+📍 <strong>${escapeHTML(property.city || "")}</strong>،
+${escapeHTML(property.wilaya)}
+</p>
 
-  }
+<p>
+🏠 النوع:
+<strong>${escapeHTML(property.property_type)}</strong>
+</p>
 
+<p>
+🚪 الغرف:
+<strong>${property.rooms || 1}</strong>
+</p>
 
-  openModal(`
+<p>
+🗓️ طبيعة الكراء:
+<strong>${periodLabel(property.rental_period)}</strong>
+</p>
 
-    <h2>${escapeHTML(property.title)}</h2>
+<p>
+🛋️ ${property.furnished ? "مفروشة" : "غير مفروشة"}
+</p>
 
-    ${gallery}
+<p>
+💰 السعر:
+<strong style="color:#176b5b">
+${formatPrice(property.price,property.rental_period)}
+</strong>
+</p>
 
-    <p>
-      📍
-      <strong>
-        ${escapeHTML(property.city || "")}
-      </strong>،
-      ${escapeHTML(property.wilaya)}
-    </p>
+<p>
+📝 ${escapeHTML(property.description || "لا يوجد وصف")}
+</p>
 
-    <p>
-      🏠 النوع:
-      <strong>
-        ${escapeHTML(property.property_type)}
-      </strong>
-    </p>
+<div class="modal-actions">
 
-    <p>
-      🚪 الغرف:
-      <strong>${property.rooms || 1}</strong>
-    </p>
+<button onclick="requestVisit('${property.id}')">
+📅 طلب زيارة
+</button>
 
-    <p>
-      🛋️
-      ${property.furnished ? "مفروشة" : "غير مفروشة"}
-    </p>
+<button class="secondary"
+onclick="callOwner('${escapeHTML(property.phone || "")}')">
+📞 الاتصال
+</button>
 
-    <p>
-      💰 السعر:
-      <strong style="color:#176b5b">
-        ${Number(property.price).toLocaleString("fr-DZ")}
-        DA / شهر
-      </strong>
-    </p>
+</div>
 
-    <p>
-      📝
-      ${escapeHTML(property.description || "لا يوجد وصف")}
-    </p>
-
-    <div class="modal-actions">
-
-      <button onclick="requestVisit('${property.id}')">
-        📅 طلب زيارة
-      </button>
-
-      <button
-        class="secondary"
-        onclick="callOwner('${escapeHTML(property.phone || "")}')">
-        📞 الاتصال
-      </button>
-
-    </div>
-
-  `);
+`);
 
 }
 
@@ -1526,100 +1542,73 @@ function showDetails(id){
 
 function requestVisit(propertyId){
 
-  if(!currentUser){
+if(!currentUser){
+openLogin();
+return;
+}
 
-    openLogin();
+openModal(`
 
-    return;
+<h2>📅 طلب زيارة</h2>
 
-  }
+<div class="form-group">
+<label>التاريخ المقترح</label>
+<input id="visitDate" type="date">
+</div>
 
+<div class="form-group">
+<label>رسالة للمالك</label>
+<textarea id="visitMessage"
+placeholder="مثال: أفضل الفترة المسائية"></textarea>
+</div>
 
-  openModal(`
+<button onclick="sendVisit('${propertyId}')">
+إرسال الطلب
+</button>
 
-    <h2>📅 طلب زيارة</h2>
-
-    <div class="form-group">
-
-      <label>التاريخ المقترح</label>
-
-      <input
-        id="visitDate"
-        type="date">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>رسالة للمالك</label>
-
-      <textarea
-        id="visitMessage"
-        placeholder="مثال: أفضل الفترة المسائية">
-      </textarea>
-
-    </div>
-
-    <button onclick="sendVisit('${propertyId}')">
-      إرسال الطلب
-    </button>
-
-  `);
+`);
 
 }
 
 
 async function sendVisit(propertyId){
 
-  const date =
-    document.getElementById("visitDate").value;
+const date =
+document.getElementById("visitDate").value;
 
-  const message =
-    document.getElementById("visitMessage").value.trim();
+const message =
+document.getElementById("visitMessage").value.trim();
 
+if(!date){
+toast("اختر تاريخ الزيارة");
+return;
+}
 
-  if(!date){
+const {error} =
+await supabaseClient
 
-    toast("اختر تاريخ الزيارة");
+.from("visit_requests")
 
-    return;
+.insert({
 
-  }
+property_id:propertyId,
+user_id:currentUser.id,
+requested_date:date,
+message,
+status:"pending"
 
+});
 
-  const {
-    error
-  } = await supabaseClient
+if(error){
 
-    .from("visit_requests")
+toast(error.message);
+return;
 
-    .insert({
+}
 
-      property_id:propertyId,
+closeModal();
 
-      user_id:currentUser.id,
-
-      requested_date:date,
-
-      message,
-
-      status:"pending"
-
-    });
-
-
-  if(error){
-
-    toast(error.message);
-
-    return;
-
-  }
-
-
-  closeModal();
-
-  toast("تم إرسال طلب الزيارة ✅");
+toast("تم إرسال طلب الزيارة ✅");
 
 }
 
@@ -1630,72 +1619,60 @@ async function sendVisit(propertyId){
 
 async function favorite(propertyId){
 
-  if(!currentUser){
+if(!currentUser){
+openLogin();
+return;
+}
 
-    openLogin();
+const {data} =
+await supabaseClient
 
-    return;
+.from("favorites")
 
-  }
+.select("id")
 
+.eq("user_id",currentUser.id)
 
-  const {
-    data
-  } = await supabaseClient
+.eq("property_id",propertyId)
 
-    .from("favorites")
+.maybeSingle();
 
-    .select("id")
+if(data){
 
-    .eq("user_id",currentUser.id)
+await supabaseClient
 
-    .eq("property_id",propertyId)
+.from("favorites")
 
-    .maybeSingle();
+.delete()
 
+.eq("id",data.id);
 
-  if(data){
+toast("تم حذف العقار من المفضلة");
 
-    await supabaseClient
+return;
 
-      .from("favorites")
+}
 
-      .delete()
+const {error} =
+await supabaseClient
 
-      .eq("id",data.id);
+.from("favorites")
 
-    toast("تم حذف العقار من المفضلة");
+.insert({
 
-    return;
+user_id:currentUser.id,
+property_id:propertyId
 
-  }
+});
 
+if(error){
 
-  const {
-    error
-  } = await supabaseClient
+toast(error.message);
+return;
 
-    .from("favorites")
+}
 
-    .insert({
-
-      user_id:currentUser.id,
-
-      property_id:propertyId
-
-    });
-
-
-  if(error){
-
-    toast(error.message);
-
-    return;
-
-  }
-
-
-  toast("تمت إضافة العقار إلى المفضلة ❤️");
+toast("تمت إضافة العقار إلى المفضلة ❤️");
 
 }
 
@@ -1706,115 +1683,420 @@ async function favorite(propertyId){
 
 async function showMyProperties(){
 
-  if(!currentUser){
+if(!currentUser){
+openLogin();
+return;
+}
 
-    openLogin();
+const {data,error} =
+await supabaseClient
 
-    return;
+.from("properties")
 
-  }
+.select(`
+*,
+property_images (
+id,
+image_path,
+is_main,
+sort_order
+)
+`)
+
+.eq("owner_id",currentUser.id)
+
+.order("created_at",{
+ascending:false
+});
+
+if(error){
+
+toast(error.message);
+return;
+
+}
+
+if(!data.length){
+
+openModal(`
+
+<h2>🏠 عقاراتي</h2>
+
+<div class="empty">
+لم تقم بإضافة أي عقار بعد.
+</div>
+
+<br>
+
+<button onclick="openAddProperty()">
++ أضف أول عقار
+</button>
+
+`);
+
+return;
+
+}
+
+openModal(`
+
+<h2>🏠 عقاراتي</h2>
+
+${data.map(p => `
+
+<div style="
+border:1px solid #ddd;
+padding:15px;
+border-radius:12px;
+margin-bottom:12px">
+
+<strong>${escapeHTML(p.title)}</strong>
+
+<p class="muted">
+${formatPrice(p.price,p.rental_period)}
+</p>
+
+<p>
+🗓️ ${periodLabel(p.rental_period)}
+</p>
+
+<p>
+الحالة:
+<strong>
+${
+p.status === "pending"
+? "⏳ قيد المراجعة"
+: p.status === "approved"
+? "✅ منشور"
+: p.status === "rejected"
+? "❌ مرفوض"
+: "🏠 مؤجر"
+}
+</strong>
+</p>
+
+</div>
+
+`).join("")}
+
+`);
+
+}
 
 
-  const {
-    data,
-    error
-  } = await supabaseClient
+/* =====================================================
+   ADMIN DASHBOARD
+===================================================== */
 
-    .from("properties")
+async function openAdminDashboard(){
 
-    .select(`
-      *,
-      property_images (
-        id,
-        image_path,
-        is_main,
-        sort_order
-      )
-    `)
+if(!currentUser){
 
-    .eq("owner_id",currentUser.id)
+openLogin();
+return;
 
-    .order("created_at",{
-      ascending:false
-    });
+}
+
+await loadProfile();
+
+if(!isAdmin()){
+
+toast("ليس لديك صلاحية الدخول إلى لوحة الإدارة");
+return;
+
+}
+
+const {data,error} =
+await supabaseClient
+
+.from("properties")
+
+.select(`
+*,
+property_images (
+id,
+image_path,
+is_main,
+sort_order
+)
+`)
+
+.order("created_at",{
+ascending:false
+});
+
+if(error){
+
+console.error(error);
+toast(error.message);
+return;
+
+}
+
+const all = data || [];
+
+const pending =
+all.filter(p => p.status === "pending");
+
+const approved =
+all.filter(p => p.status === "approved");
+
+const rejected =
+all.filter(p => p.status === "rejected");
+
+openModal(`
+
+<h2>🛡️ لوحة الإدارة</h2>
+
+<div class="stat-grid">
+
+<div class="stat">
+الإعلانات قيد المراجعة
+<strong>${pending.length}</strong>
+</div>
+
+<div class="stat">
+الإعلانات المنشورة
+<strong>${approved.length}</strong>
+</div>
+
+<div class="stat">
+الإعلانات المرفوضة
+<strong>${rejected.length}</strong>
+</div>
+
+</div>
+
+<h3>⏳ الإعلانات قيد المراجعة</h3>
+
+<div id="adminPending">
+
+${
+pending.length
+?
+pending.map(renderAdminProperty).join("")
+:
+`
+<div class="empty">
+لا توجد إعلانات جديدة للمراجعة.
+</div>
+`
+}
+
+</div>
+
+`);
+
+}
 
 
-  if(error){
+function renderAdminProperty(p){
 
-    toast(error.message);
+const images =
+(p.property_images || [])
+.sort((a,b) =>
+(a.sort_order || 0) -
+(b.sort_order || 0)
+);
 
-    return;
+return `
 
-  }
+<div class="admin-card" id="admin-${p.id}">
+
+<h3>${escapeHTML(p.title)}</h3>
+
+<p class="muted">
+
+📍 ${escapeHTML(p.city || "")}،
+${escapeHTML(p.wilaya)}
+
+<br>
+
+🏠 ${escapeHTML(p.property_type)}
+· ${p.rooms || 1} غرف
+
+<br>
+
+🗓️ ${periodLabel(p.rental_period)}
+
+<br>
+
+💰 ${formatPrice(p.price,p.rental_period)}
+
+<br>
+
+📞 ${escapeHTML(p.phone || "غير متوفر")}
+
+</p>
+
+<span class="status ${escapeHTML(p.status)}">
+${
+p.status === "pending"
+? "⏳ قيد المراجعة"
+: p.status === "approved"
+? "✅ منشور"
+: "❌ مرفوض"
+}
+</span>
+
+${
+images.length
+?
+`
+<div class="admin-images">
+
+${images.map(img => `
+
+<img
+src="${imageURL(img.image_path)}"
+alt="صورة العقار">
+
+`).join("")}
+
+</div>
+`
+:
+""
+}
+
+<p>
+${escapeHTML(p.description || "لا يوجد وصف")}
+</p>
+
+<div class="admin-actions">
+
+<button
+onclick="adminApprove('${p.id}')">
+✅ موافقة ونشر
+</button>
+
+<button
+class="warning"
+onclick="adminReject('${p.id}')">
+❌ رفض
+</button>
+
+<button
+class="danger"
+onclick="adminDelete('${p.id}')">
+🗑️ حذف
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
 
 
-  if(!data.length){
+/* =====================================================
+   ADMIN ACTIONS
+===================================================== */
 
-    openModal(`
+async function adminApprove(propertyId){
 
-      <h2>🏠 عقاراتي</h2>
+if(!isAdmin()){
 
-      <div class="empty">
-        لم تقم بإضافة أي عقار بعد.
-      </div>
+toast("ليس لديك صلاحية");
+return;
 
-      <br>
+}
 
-      <button onclick="openAddProperty()">
-        + أضف أول عقار
-      </button>
+const {error} =
+await supabaseClient
 
-    `);
+.from("properties")
 
-    return;
+.update({
+status:"approved"
+})
 
-  }
+.eq("id",propertyId);
+
+if(error){
+
+toast(error.message);
+return;
+
+}
+
+toast("تمت الموافقة ونشر العقار ✅");
+
+await openAdminDashboard();
+await loadProperties();
+
+}
 
 
-  openModal(`
+async function adminReject(propertyId){
 
-    <h2>🏠 عقاراتي</h2>
+if(!isAdmin()){
 
-    ${data.map(p => `
+toast("ليس لديك صلاحية");
+return;
 
-      <div style="
-        border:1px solid #ddd;
-        padding:15px;
-        border-radius:12px;
-        margin-bottom:12px">
+}
 
-        <strong>
-          ${escapeHTML(p.title)}
-        </strong>
+const {error} =
+await supabaseClient
 
-        <p class="muted">
-          ${Number(p.price).toLocaleString("fr-DZ")}
-          DA / شهر
-        </p>
+.from("properties")
 
-        <p>
+.update({
+status:"rejected"
+})
 
-          الحالة:
+.eq("id",propertyId);
 
-          <strong>
-            ${
-              p.status === "pending"
-              ? "⏳ قيد المراجعة"
-              : p.status === "approved"
-              ? "✅ منشور"
-              : p.status === "rejected"
-              ? "❌ مرفوض"
-              : "🏠 مؤجر"
-            }
-          </strong>
+if(error){
 
-        </p>
+toast(error.message);
+return;
 
-      </div>
+}
 
-    `).join("")}
+toast("تم رفض الإعلان ❌");
 
-  `);
+await openAdminDashboard();
+
+}
+
+
+async function adminDelete(propertyId){
+
+if(!isAdmin()){
+
+toast("ليس لديك صلاحية");
+return;
+
+}
+
+if(!confirm("هل أنت متأكد من حذف هذا الإعلان نهائيًا؟")){
+return;
+}
+
+const {error} =
+await supabaseClient
+
+.from("properties")
+
+.delete()
+
+.eq("id",propertyId);
+
+if(error){
+
+toast(error.message);
+return;
+
+}
+
+toast("تم حذف الإعلان 🗑️");
+
+await openAdminDashboard();
+await loadProperties();
 
 }
 
@@ -1825,15 +2107,14 @@ async function showMyProperties(){
 
 function callOwner(phone){
 
-  if(!phone){
+if(!phone){
 
-    toast("رقم الهاتف غير متوفر");
+toast("رقم الهاتف غير متوفر");
+return;
 
-    return;
+}
 
-  }
-
-  window.location.href = "tel:" + phone;
+window.location.href = "tel:" + phone;
 
 }
 
@@ -1844,16 +2125,16 @@ function callOwner(phone){
 
 async function start(){
 
-  await loadUser();
+await loadUser();
 
-  await loadProperties();
+await loadProperties();
 
 }
-
 
 start();
 
 </script>
 
 </body>
-  </html>
+</html>
+```
