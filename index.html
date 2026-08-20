@@ -1,10 +1,10 @@
-```html
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#123d35">
+<meta name="theme-color" content="#174f45">
 <meta name="description" content="KriDari - منصة كراء العقارات في الجزائر">
 <title>KriDari | كراء العقارات في الجزائر</title>
 
@@ -14,18 +14,16 @@
 *{box-sizing:border-box}
 
 :root{
-  --primary:#123d35;
-  --primary2:#1b5b4d;
-  --gold:#c69745;
-  --gold2:#e0b866;
-  --dark:#18201f;
-  --text:#26312f;
-  --muted:#737d79;
-  --bg:#f4f2ed;
+  --green:#174f45;
+  --green2:#206b5c;
+  --gold:#c99232;
+  --cream:#f7f5ef;
   --white:#fff;
-  --border:#e4e0d7;
+  --dark:#17231f;
+  --muted:#68746f;
+  --border:#e4e7e3;
   --danger:#b42318;
-  --shadow:0 12px 35px rgba(20,35,31,.08);
+  --shadow:0 10px 35px rgba(20,45,39,.08);
 }
 
 html{
@@ -34,9 +32,9 @@ html{
 
 body{
   margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family:Arial,Tahoma,sans-serif;
+  background:var(--cream);
+  color:var(--dark);
 }
 
 button,input,select,textarea{
@@ -46,155 +44,163 @@ button,input,select,textarea{
 button{
   border:0;
   cursor:pointer;
+  border-radius:10px;
+  padding:12px 17px;
+  background:var(--green);
+  color:#fff;
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-1px);
+  opacity:.94;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none;
+}
+
+button.secondary{
+  background:#edf2ef;
+  color:var(--green);
+}
+
+button.danger{
+  background:#fff0ef;
+  color:var(--danger);
 }
 
 a{
   color:inherit;
-  text-decoration:none;
 }
 
 /* HEADER */
 
 header{
+  background:rgba(255,255,255,.97);
+  padding:14px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
   position:sticky;
   top:0;
-  z-index:100;
-  background:rgba(255,255,255,.97);
-  border-bottom:1px solid var(--border);
-  box-shadow:0 3px 18px rgba(0,0,0,.05);
-}
-
-.header-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:15px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
+  z-index:50;
+  box-shadow:0 2px 15px rgba(0,0,0,.07);
 }
 
 .logo{
-  font-size:31px;
+  font-size:30px;
   font-weight:900;
+  color:var(--green);
   letter-spacing:-1px;
-  color:var(--primary);
 }
 
 .logo span{
   color:var(--gold);
 }
 
-.logo-sub{
-  font-size:11px;
-  color:var(--muted);
-  margin-top:2px;
-}
-
 .nav{
   display:flex;
-  align-items:center;
   gap:8px;
+  align-items:center;
   flex-wrap:wrap;
 }
 
-.btn{
-  padding:11px 17px;
-  border-radius:9px;
-  background:var(--primary);
-  color:#fff;
-  font-weight:bold;
-  transition:.2s;
-}
-
-.btn:hover{
-  transform:translateY(-1px);
-  background:var(--primary2);
-}
-
-.btn.gold{
-  background:var(--gold);
-  color:#fff;
-}
-
-.btn.light{
-  background:#edf2ef;
-  color:var(--primary);
-}
-
-.btn.danger{
-  background:#fff0ee;
-  color:var(--danger);
+.user{
+  font-size:14px;
+  color:var(--muted);
 }
 
 /* HERO */
 
 .hero{
-  background:
-    linear-gradient(135deg,rgba(18,61,53,.97),rgba(27,91,77,.95));
-  color:#fff;
-  padding:72px 20px 85px;
   position:relative;
+  min-height:570px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-align:center;
+  padding:80px 20px;
   overflow:hidden;
-}
 
-.hero:after{
-  content:"";
-  position:absolute;
-  width:500px;
-  height:500px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.08);
-  left:-180px;
-  top:-220px;
+  background:
+    linear-gradient(
+      rgba(10,38,32,.70),
+      rgba(10,38,32,.78)
+    ),
+    url("https://commons.wikimedia.org/wiki/Special:FilePath/Martyrs%20Memorial.%20Algiers%2026.jpg")
+    center/cover no-repeat;
 }
 
 .hero-content{
-  max-width:1150px;
-  margin:auto;
-  text-align:center;
   position:relative;
   z-index:2;
+  width:100%;
+  max-width:1100px;
 }
 
-.hero-kicker{
+.hero-badge{
   display:inline-block;
-  padding:7px 14px;
-  border:1px solid rgba(255,255,255,.22);
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.35);
   border-radius:30px;
-  font-size:13px;
+  background:rgba(255,255,255,.10);
+  backdrop-filter:blur(5px);
   margin-bottom:18px;
+  font-size:14px;
 }
 
 .hero h1{
-  margin:0;
-  font-size:43px;
-  line-height:1.25;
+  font-size:48px;
+  margin:0 0 12px;
+  line-height:1.2;
+}
+
+.hero h1 span{
+  color:#e8bb68;
 }
 
 .hero p{
-  font-size:18px;
-  color:#e5eeeb;
-  margin:16px 0 30px;
+  font-size:19px;
+  margin:0 auto 35px;
+  opacity:.94;
 }
 
-.search-box{
+.search{
   max-width:1050px;
   margin:auto;
-  padding:12px;
-  background:#fff;
-  border-radius:14px;
-  box-shadow:0 18px 45px rgba(0,0,0,.18);
+  background:rgba(255,255,255,.98);
+  padding:14px;
+  border-radius:17px;
   display:grid;
-  grid-template-columns:1fr 1fr 1fr 1.3fr auto;
+  grid-template-columns:1fr 1fr 1fr 1.4fr auto;
   gap:8px;
+  box-shadow:0 20px 60px rgba(0,0,0,.20);
 }
 
-.search-box input,
-.search-box select{
-  border:1px solid #e0e3e1;
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #d9dfdb;
+  border-radius:9px;
   background:#fff;
-  color:var(--text);
+  outline:none;
+}
+
+textarea{
+  min-height:105px;
+  resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--green2);
+  box-shadow:0 0 0 3px rgba(32,107,92,.10);
 }
 
 /* MAIN */
@@ -202,30 +208,27 @@ header{
 main{
   max-width:1200px;
   margin:auto;
-  padding:48px 5%;
+  padding:45px 6%;
 }
 
-.section-head{
+.title-row{
   display:flex;
   justify-content:space-between;
   align-items:end;
-  gap:15px;
+  gap:20px;
   margin-bottom:25px;
 }
 
-.section-title{
+.title-row h2{
   margin:0;
-  font-size:29px;
-  color:var(--primary);
+  font-size:30px;
 }
 
-.section-sub{
+.section-subtitle{
   color:var(--muted);
-  font-size:14px;
   margin-top:7px;
+  font-size:14px;
 }
-
-/* CARDS */
 
 .cards{
   display:grid;
@@ -236,7 +239,7 @@ main{
 .card{
   background:#fff;
   border:1px solid var(--border);
-  border-radius:15px;
+  border-radius:17px;
   overflow:hidden;
   box-shadow:var(--shadow);
   transition:.25s;
@@ -244,43 +247,33 @@ main{
 
 .card:hover{
   transform:translateY(-4px);
-  box-shadow:0 18px 40px rgba(20,35,31,.12);
+  box-shadow:0 18px 45px rgba(20,45,39,.13);
 }
 
+/* IMPORTANT: IMAGE IS COMPLETELY SEPARATE FROM TEXT */
+
 .card-image{
-  height:225px;
-  background:#e6e9e6;
+  height:220px;
+  background:#e7ece9;
   position:relative;
   overflow:hidden;
 }
 
 .card-image img{
+  display:block;
   width:100%;
   height:100%;
   object-fit:cover;
-  display:block;
 }
 
-.card-badge{
+.image-count{
   position:absolute;
-  top:13px;
-  right:13px;
-  background:rgba(255,255,255,.94);
-  color:var(--primary);
-  padding:7px 11px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.rent-badge{
-  position:absolute;
-  bottom:12px;
+  top:12px;
   right:12px;
-  background:var(--primary);
+  background:rgba(0,0,0,.60);
   color:#fff;
-  padding:7px 11px;
-  border-radius:7px;
+  padding:6px 10px;
+  border-radius:20px;
   font-size:12px;
 }
 
@@ -289,44 +282,50 @@ main{
 }
 
 .price{
-  color:var(--primary);
+  color:var(--green2);
   font-size:21px;
-  font-weight:900;
+  font-weight:800;
+}
+
+.rental-period{
+  display:inline-block;
+  background:#f1eee6;
+  color:#76591f;
+  padding:5px 9px;
+  border-radius:15px;
+  font-size:12px;
+  margin-top:8px;
 }
 
 .card h3{
-  margin:9px 0;
+  margin:10px 0;
   font-size:19px;
-  color:var(--dark);
 }
 
-.meta{
+.muted{
   color:var(--muted);
-  font-size:13px;
-  line-height:1.9;
+  font-size:14px;
+  line-height:1.7;
 }
 
-.card-actions{
+.actions{
   display:flex;
   gap:8px;
   margin-top:16px;
 }
 
-.card-actions .btn{
+.actions button{
   flex:1;
-  text-align:center;
 }
-
-/* EMPTY */
 
 .empty{
   background:#fff;
-  border:1px solid var(--border);
-  border-radius:15px;
   padding:55px 25px;
   text-align:center;
+  border-radius:17px;
   color:var(--muted);
   grid-column:1/-1;
+  border:1px solid var(--border);
 }
 
 /* MODAL */
@@ -335,8 +334,8 @@ main{
   display:none;
   position:fixed;
   inset:0;
-  z-index:500;
-  background:rgba(10,20,18,.68);
+  background:rgba(0,0,0,.68);
+  z-index:100;
   align-items:center;
   justify-content:center;
   padding:18px;
@@ -346,33 +345,33 @@ main{
   display:flex;
 }
 
-.modal-box{
+.box{
+  background:#fff;
   width:min(720px,100%);
   max-height:94vh;
   overflow:auto;
-  background:#fff;
-  border-radius:17px;
-  padding:28px;
+  border-radius:20px;
+  padding:27px;
   position:relative;
-  box-shadow:0 25px 70px rgba(0,0,0,.25);
+  box-shadow:0 25px 80px rgba(0,0,0,.25);
 }
 
 .close{
   position:absolute;
   left:15px;
-  top:15px;
-  width:38px;
-  height:38px;
+  top:13px;
+  width:40px;
+  height:40px;
+  padding:0;
   border-radius:50%;
-  background:#f0f1ef;
+  background:#f0f2f0;
   color:#333;
-  font-size:24px;
+  font-size:25px;
 }
 
-.modal-title{
+.modal h2{
+  color:var(--green);
   margin:0 45px 22px 0;
-  color:var(--primary);
-  font-size:25px;
 }
 
 .form-group{
@@ -383,29 +382,6 @@ main{
   display:block;
   font-weight:bold;
   margin-bottom:7px;
-  font-size:14px;
-}
-
-input,select,textarea{
-  width:100%;
-  padding:12px 13px;
-  border:1px solid #d8dedb;
-  border-radius:9px;
-  background:#fff;
-  color:var(--text);
-  outline:none;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:var(--primary2);
-  box-shadow:0 0 0 3px rgba(27,91,77,.1);
-}
-
-textarea{
-  min-height:110px;
-  resize:vertical;
 }
 
 .grid2{
@@ -420,63 +396,128 @@ textarea{
   margin-top:20px;
 }
 
-.modal-actions .btn{
+.modal-actions button{
   flex:1;
 }
 
-/* CHECKBOX */
+/* TERMS */
 
 .terms-box{
-  background:#f7f6f1;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:13px;
-  margin-top:12px;
-}
-
-.terms-label{
-  display:flex;
-  align-items:flex-start;
-  gap:10px;
+  background:#f7f8f7;
+  border:1px solid #e0e5e1;
+  padding:14px;
+  border-radius:11px;
   font-size:13px;
   line-height:1.8;
+  max-height:180px;
+  overflow:auto;
+  margin-bottom:12px;
+}
+
+.consent{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  font-size:13px;
+  line-height:1.7;
   cursor:pointer;
 }
 
-.terms-label input{
+.consent input{
   width:18px;
   height:18px;
   margin-top:3px;
   flex:none;
-  accent-color:var(--primary);
 }
 
-.text-link{
-  color:var(--primary2);
-  text-decoration:underline;
+/* GALLERY */
+
+.gallery-main{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  border-radius:13px;
+  display:block;
+  background:#eee;
+  margin-bottom:9px;
+}
+
+.gallery-thumbs{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+  margin-bottom:20px;
+}
+
+.gallery-thumb{
+  height:75px;
+  border-radius:8px;
+  overflow:hidden;
   cursor:pointer;
-  font-weight:bold;
+  border:2px solid transparent;
 }
 
-/* IMAGES */
+.gallery-thumb.active{
+  border-color:var(--gold);
+}
+
+.gallery-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* PROPERTY DETAILS */
+
+.detail-info{
+  background:#fafbf9;
+  border:1px solid #e4e8e5;
+  border-radius:13px;
+  padding:17px;
+  margin-bottom:15px;
+}
+
+.detail-price{
+  font-size:26px;
+  font-weight:900;
+  color:var(--green);
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.detail-item{
+  background:#fff;
+  padding:11px;
+  border-radius:9px;
+  border:1px solid #e8ebe8;
+}
+
+.detail-label{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+/* PREVIEWS */
 
 .previews{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:8px;
-  margin-top:12px;
+  margin-top:10px;
 }
 
 .preview{
-  height:85px;
+  height:90px;
   border-radius:8px;
   overflow:hidden;
   position:relative;
-  border:2px solid transparent;
-}
-
-.preview.main{
-  border-color:var(--gold);
+  background:#eee;
 }
 
 .preview img{
@@ -485,153 +526,82 @@ textarea{
   object-fit:cover;
 }
 
-.preview-label{
+.main-label{
   position:absolute;
   bottom:0;
   right:0;
   left:0;
-  padding:3px;
-  background:rgba(18,61,53,.9);
+  background:rgba(23,79,69,.9);
   color:#fff;
-  font-size:10px;
   text-align:center;
-}
-
-/* GALLERY */
-
-.gallery{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:8px;
-  margin-bottom:20px;
-}
-
-.gallery-main{
-  height:330px;
-}
-
-.gallery-main img,
-.gallery-side img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:9px;
-}
-
-.gallery-side{
-  display:grid;
-  grid-template-rows:1fr 1fr;
-  gap:8px;
-}
-
-.property-info{
-  background:#f7f6f1;
-  border-radius:11px;
-  padding:15px;
-  margin:15px 0;
-}
-
-.info-row{
-  display:flex;
-  justify-content:space-between;
-  padding:8px 0;
-  border-bottom:1px solid #e5e1d8;
-  font-size:14px;
-}
-
-.info-row:last-child{
-  border-bottom:0;
+  font-size:11px;
+  padding:4px;
 }
 
 /* REPORT */
 
-.report-reason{
-  display:block;
-  width:100%;
-  text-align:right;
-  background:#fafafa;
-  color:var(--text);
-  border:1px solid #ddd;
-  padding:12px;
-  border-radius:8px;
-  margin-bottom:8px;
+.report-box{
+  background:#fff8f7;
+  border:1px solid #f2d6d2;
+  border-radius:12px;
+  padding:15px;
+  margin-top:18px;
 }
 
-.report-reason:hover{
-  background:#f2efea;
+.report-box strong{
+  color:var(--danger);
 }
 
 /* TOAST */
 
 .toast{
+  display:none;
   position:fixed;
   bottom:25px;
   left:50%;
-  transform:translateX(-50%) translateY(20px);
-  z-index:1000;
-  background:#172321;
+  transform:translateX(-50%);
+  z-index:300;
+  background:#17231f;
   color:#fff;
-  padding:13px 22px;
+  padding:13px 20px;
   border-radius:10px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
   max-width:90%;
   text-align:center;
 }
 
 .toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+  display:block;
 }
 
 /* FOOTER */
 
 footer{
-  background:#162321;
-  color:#dfe8e5;
+  background:#17231f;
+  color:#fff;
+  text-align:center;
+  padding:38px 20px;
   margin-top:30px;
-  padding:45px 6%;
-}
-
-.footer-inner{
-  max-width:1150px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  gap:30px;
-  flex-wrap:wrap;
 }
 
 .footer-logo{
-  font-size:25px;
+  font-size:24px;
   font-weight:bold;
-  color:#fff;
+  margin-bottom:8px;
 }
 
 .footer-logo span{
-  color:var(--gold2);
+  color:#d7a548;
 }
 
 .footer-links{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-  font-size:13px;
+  margin:15px 0;
 }
 
-.footer-links a{
-  color:#dfe8e5;
-  cursor:pointer;
-}
-
-.footer-copy{
-  width:100%;
-  border-top:1px solid rgba(255,255,255,.12);
-  padding-top:20px;
-  margin-top:10px;
-  font-size:12px;
-  color:#9ca9a5;
+.footer-links button{
+  background:transparent;
+  color:#ddd;
+  padding:5px 8px;
 }
 
 /* RESPONSIVE */
@@ -642,17 +612,20 @@ footer{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .search-box{
+  .search{
     grid-template-columns:1fr 1fr;
+  }
+
+  .search button{
+    grid-column:1/-1;
   }
 
 }
 
 @media(max-width:650px){
 
-  .header-inner{
+  header{
     flex-direction:column;
-    align-items:stretch;
   }
 
   .nav{
@@ -660,32 +633,28 @@ footer{
   }
 
   .hero{
-    padding:50px 15px 65px;
+    min-height:620px;
+    padding:55px 15px;
   }
 
   .hero h1{
-    font-size:30px;
+    font-size:32px;
   }
 
   .hero p{
-    font-size:15px;
+    font-size:16px;
   }
 
-  .search-box{
+  .search{
     grid-template-columns:1fr;
   }
 
-  main{
-    padding:35px 5%;
+  .search button{
+    grid-column:auto;
   }
 
   .cards{
     grid-template-columns:1fr;
-  }
-
-  .section-head{
-    align-items:flex-start;
-    flex-direction:column;
   }
 
   .grid2{
@@ -696,164 +665,154 @@ footer{
     grid-template-columns:repeat(3,1fr);
   }
 
-  .gallery{
-    grid-template-columns:1fr;
-  }
-
   .gallery-main{
     height:250px;
   }
 
-  .gallery-side{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:none;
-    height:120px;
+  .gallery-thumbs{
+    grid-template-columns:repeat(4,1fr);
   }
 
-  .modal-box{
-    padding:22px 17px;
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .modal-actions{
+    flex-direction:column;
   }
 
 }
 
-/* SECURITY NOTICE */
+/* HIDE ANY ACCIDENTAL RAW TEXT */
 
-.security-note{
-  background:#fff8e8;
-  border:1px solid #ead8aa;
-  color:#624d21;
-  padding:12px;
-  border-radius:9px;
-  font-size:12px;
-  line-height:1.8;
-  margin-top:12px;
-}
-
-.status{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.status.pending{
-  background:#fff6db;
-  color:#8a6500;
-}
-
-.status.approved{
-  background:#e6f5ee;
-  color:#126345;
-}
-
-.status.rejected{
-  background:#fff0ee;
-  color:#a31c12;
+body > html{
+  display:none;
 }
 </style>
+
 </head>
 
 <body>
 
 <header>
-  <div class="header-inner">
 
-    <div>
-      <div class="logo">Kri<span>Dari</span></div>
-      <div class="logo-sub">منصة كراء العقارات في الجزائر</div>
-    </div>
-
-    <div class="nav" id="nav"></div>
-
+  <div class="logo">
+    Kri<span>Dari</span>
   </div>
-</header>
 
+  <div class="nav" id="nav"></div>
+
+</header>
 
 <section class="hero">
 
   <div class="hero-content">
 
-    <div class="hero-kicker">
-      منصة عقارية جزائرية
-    </div>
+```
+<div class="hero-badge">
+  🇩🇿 منصة جزائرية للكراء العقاري
+</div>
 
-    <h1>لقّي دارك بسهولة</h1>
+<h1>
+  لقّي دارك <span>بسهولة</span>
+</h1>
 
-    <p>
-      ابحث عن العقار المناسب للكراء اليومي أو الشهري أو السنوي
-    </p>
+<p>
+  ابحث عن شقتك، فيلاتك أو محلك التجاري في الجزائر
+</p>
 
-    <div class="search-box">
+<div class="search">
 
-      <select id="searchWilaya">
-        <option value="">كل الولايات</option>
-        <option>الجزائر</option>
-        <option>وهران</option>
-        <option>قسنطينة</option>
-        <option>غليزان</option>
-        <option>عنابة</option>
-        <option>سطيف</option>
-        <option>مستغانم</option>
-        <option>تلمسان</option>
-        <option>الشلف</option>
-        <option>البليدة</option>
-        <option>بجاية</option>
-        <option>تيزي وزو</option>
-        <option>سيدي بلعباس</option>
-      </select>
+  <select id="searchWilaya">
 
-      <select id="searchType">
-        <option value="">كل الأنواع</option>
-        <option>F1</option>
-        <option>F2</option>
-        <option>F3</option>
-        <option>F4</option>
-        <option>F5</option>
-        <option>Villa</option>
-        <option>Studio</option>
-        <option>Duplex</option>
-        <option>Local commercial</option>
-        <option>Terrain</option>
-      </select>
+    <option value="">كل الولايات</option>
+    <option>الجزائر</option>
+    <option>وهران</option>
+    <option>قسنطينة</option>
+    <option>غليزان</option>
+    <option>عنابة</option>
+    <option>سطيف</option>
+    <option>مستغانم</option>
+    <option>تلمسان</option>
+    <option>الشلف</option>
+    <option>البليدة</option>
+    <option>بجاية</option>
+    <option>تيزي وزو</option>
+    <option>سيدي بلعباس</option>
 
-      <select id="searchRentType">
-        <option value="">كل أنواع الكراء</option>
-        <option value="daily">يومي</option>
-        <option value="monthly">شهري</option>
-        <option value="yearly">سنوي</option>
-      </select>
+  </select>
 
-      <input
-        id="searchText"
-        placeholder="المدينة أو العنوان">
 
-      <button class="btn gold" onclick="searchProperties()">
-        🔎 بحث
-      </button>
+  <select id="searchType">
 
-    </div>
+    <option value="">كل الأنواع</option>
+    <option>F1</option>
+    <option>F2</option>
+    <option>F3</option>
+    <option>F4</option>
+    <option>F5</option>
+    <option>Villa</option>
+    <option>Studio</option>
+    <option>Duplex</option>
+    <option>Local commercial</option>
+    <option>Terrain</option>
+
+  </select>
+
+
+  <select id="searchPeriod">
+
+    <option value="">كل أنواع الكراء</option>
+    <option value="daily">يومي</option>
+    <option value="monthly">شهري</option>
+    <option value="yearly">سنوي</option>
+
+  </select>
+
+
+  <input
+    id="searchPrice"
+    type="number"
+    placeholder="أقصى سعر DA"
+  >
+
+
+  <input
+    id="searchText"
+    placeholder="المدينة أو العنوان"
+  >
+
+
+  <button onclick="searchProperties()">
+    🔎 بحث
+  </button>
+
+</div>
+```
 
   </div>
 
 </section>
 
-
 <main>
 
-  <div class="section-head">
+  <div class="title-row">
 
-    <div>
-      <h2 class="section-title">
-        العقارات المتاحة
-      </h2>
+```
+<div>
 
-      <div class="section-sub">
-        عقارات منشورة ومراجعة على KriDari
-      </div>
-    </div>
+  <h2>
+    العقارات المتاحة
+  </h2>
 
-    <span id="count" class="section-sub"></span>
+  <div class="section-subtitle">
+    إعلانات العقارات التي تمت مراجعتها والموافقة عليها
+  </div>
+
+</div>
+
+<span id="count" class="muted"></span>
+```
 
   </div>
 
@@ -861,67 +820,71 @@ footer{
 
 </main>
 
-
 <footer>
 
-  <div class="footer-inner">
+  <div class="footer-logo">
+    Kri<span>Dari</span>
+  </div>
 
-    <div>
-      <div class="footer-logo">
-        Kri<span>Dari</span>
-      </div>
+  <div>
+    منصة كراء العقارات في الجزائر
+  </div>
 
-      <p>
-        منصة لعرض وربط العقارات المخصصة للكراء.
-      </p>
-    </div>
+  <div class="footer-links">
 
-    <div class="footer-links">
+```
+<button onclick="showTerms()">
+  شروط الاستخدام
+</button>
 
-      <a onclick="showTerms()">
-        شروط الاستخدام
-      </a>
+<button onclick="showPrivacy()">
+  الخصوصية
+</button>
 
-      <a onclick="showPrivacy()">
-        سياسة الخصوصية
-      </a>
-
-      <a onclick="showSafety()">
-        السلامة والتبليغ
-      </a>
-
-    </div>
-
-    <div class="footer-copy">
-      © 2026 KriDari — جميع الحقوق محفوظة
-    </div>
+<button onclick="showResponsibility()">
+  المسؤولية والإعلانات
+</button>
+```
 
   </div>
 
-</footer>
+  <small>
+    © 2026 KriDari — جميع الحقوق محفوظة
+  </small>
 
+<br><br>
+
+  <small style="opacity:.65">
+    صورة الخلفية: Dezedien / Wikimedia Commons — CC BY-SA 4.0
+  </small>
+
+</footer>
 
 <div id="modal" class="modal">
 
-  <div class="modal-box">
+  <div class="box">
 
-    <button class="close" onclick="closeModal()">×</button>
+```
+<button
+  class="close"
+  onclick="closeModal()">
+  ×
+</button>
 
-    <div id="modalContent"></div>
+<div id="modalContent"></div>
+```
 
   </div>
 
 </div>
 
-
 <div id="toast" class="toast"></div>
-
 
 <script>
 
-/* =========================================================
+/* =====================================================
    SUPABASE
-========================================================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://rvhqwpynhlgcscscybse.supabase.co";
@@ -936,9 +899,9 @@ window.supabase.createClient(
 );
 
 
-/* =========================================================
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
 
 let currentUser = null;
 let currentProperties = [];
@@ -946,9 +909,9 @@ let selectedFiles = [];
 let mainImageIndex = 0;
 
 
-/* =========================================================
+/* =====================================================
    HELPERS
-========================================================= */
+===================================================== */
 
 function escapeHTML(value){
 
@@ -962,29 +925,7 @@ function escapeHTML(value){
 }
 
 
-function rentLabel(type){
-
-  if(type === "daily") return "يومي";
-
-  if(type === "yearly") return "سنوي";
-
-  return "شهري";
-
-}
-
-
-function rentSuffix(type){
-
-  if(type === "daily") return "DA / يوم";
-
-  if(type === "yearly") return "DA / سنة";
-
-  return "DA / شهر";
-
-}
-
-
-function showToast(message){
+function toast(message){
 
   const el =
     document.getElementById("toast");
@@ -994,51 +935,94 @@ function showToast(message){
   el.classList.add("show");
 
   setTimeout(() => {
+
     el.classList.remove("show");
-  },3500);
+
+  },3200);
 
 }
 
 
 function openModal(html){
 
-  document.getElementById("modalContent")
-    .innerHTML = html;
+  document.getElementById(
+    "modalContent"
+  ).innerHTML = html;
 
-  document.getElementById("modal")
-    .classList.add("show");
+  document.getElementById(
+    "modal"
+  ).classList.add("show");
 
 }
 
 
 function closeModal(){
 
-  document.getElementById("modal")
-    .classList.remove("show");
+  document.getElementById(
+    "modal"
+  ).classList.remove("show");
 
 }
 
 
-document.getElementById("modal")
-.addEventListener("click",function(e){
+document.getElementById("modal").addEventListener(
+  "click",
+  function(e){
 
-  if(e.target === this){
-    closeModal();
+    if(e.target === this){
+      closeModal();
+    }
+
+  }
+);
+
+
+/* =====================================================
+   RENTAL PERIOD
+===================================================== */
+
+function periodLabel(period){
+
+  if(period === "daily"){
+    return "يومي";
   }
 
-});
+  if(period === "yearly"){
+    return "سنوي";
+  }
+
+  return "شهري";
+
+}
 
 
-/* =========================================================
+function priceLabel(price,period){
+
+  const formatted =
+    Number(price || 0).toLocaleString("fr-DZ");
+
+  if(period === "daily"){
+    return `${formatted} DA / يوم`;
+  }
+
+  if(period === "yearly"){
+    return `${formatted} DA / سنة`;
+  }
+
+  return `${formatted} DA / شهر`;
+
+}
+
+
+/* =====================================================
    AUTH
-========================================================= */
+===================================================== */
 
 async function loadUser(){
 
   const {
     data:{session}
-  } =
-  await supabaseClient.auth.getSession();
+  } = await supabaseClient.auth.getSession();
 
   currentUser =
     session?.user || null;
@@ -1057,7 +1041,9 @@ supabaseClient.auth.onAuthStateChange(
     updateNav();
 
     if(event === "SIGNED_IN"){
+
       await loadProperties();
+
     }
 
   }
@@ -1080,27 +1066,25 @@ function updateNav(){
 
     nav.innerHTML = `
 
-      <span style="font-size:13px">
+      <span class="user">
         مرحبًا
         <strong>
           ${escapeHTML(name)}
         </strong>
       </span>
 
-      <button
-        class="btn gold"
-        onclick="openAddProperty()">
+      <button onclick="openAddProperty()">
         + أضف عقارك
       </button>
 
       <button
-        class="btn light"
+        class="secondary"
         onclick="showMyProperties()">
         عقاراتي
       </button>
 
       <button
-        class="btn light"
+        class="secondary"
         onclick="logout()">
         خروج
       </button>
@@ -1111,14 +1095,18 @@ function updateNav(){
 
     nav.innerHTML = `
 
+      <button onclick="openAddProperty()">
+        + أضف عقارك
+      </button>
+
       <button
-        class="btn light"
+        class="secondary"
         onclick="openLogin()">
         تسجيل الدخول
       </button>
 
       <button
-        class="btn"
+        class="secondary"
         onclick="openRegister()">
         إنشاء حساب
       </button>
@@ -1130,46 +1118,50 @@ function updateNav(){
 }
 
 
-/* =========================================================
+/* =====================================================
    LOGIN
-========================================================= */
+===================================================== */
 
 function openLogin(){
 
   openModal(`
 
-    <h2 class="modal-title">
-      🔐 تسجيل الدخول
-    </h2>
+    <h2>🔐 تسجيل الدخول</h2>
 
     <div class="form-group">
-      <label>البريد الإلكتروني</label>
+
+      <label>
+        البريد الإلكتروني
+      </label>
 
       <input
         id="loginEmail"
         type="email"
         placeholder="example@email.com">
+
     </div>
 
     <div class="form-group">
-      <label>كلمة المرور</label>
+
+      <label>
+        كلمة المرور
+      </label>
 
       <input
         id="loginPassword"
         type="password"
         placeholder="كلمة المرور">
+
     </div>
 
     <div class="modal-actions">
 
-      <button
-        class="btn"
-        onclick="login()">
+      <button onclick="login()">
         دخول
       </button>
 
       <button
-        class="btn light"
+        class="secondary"
         onclick="openRegister()">
         إنشاء حساب
       </button>
@@ -1184,64 +1176,74 @@ function openLogin(){
 async function login(){
 
   const email =
-    document.getElementById("loginEmail")
-    .value.trim();
+    document.getElementById(
+      "loginEmail"
+    ).value.trim();
 
   const password =
-    document.getElementById("loginPassword")
-    .value;
+    document.getElementById(
+      "loginPassword"
+    ).value;
 
 
   if(!email || !password){
 
-    showToast(
-      "أدخل البريد الإلكتروني وكلمة المرور"
+    toast(
+      "أدخل البريد وكلمة المرور"
     );
 
     return;
+
   }
 
 
-  const {error} =
-    await supabaseClient.auth
-      .signInWithPassword({
-        email,
-        password
-      });
+  const {
+    error
+  } =
+    await supabaseClient.auth.signInWithPassword({
+
+      email,
+
+      password
+
+    });
 
 
   if(error){
 
-    showToast(error.message);
+    toast(error.message);
 
     return;
+
   }
 
 
   closeModal();
 
-  showToast(
+  toast(
     "تم تسجيل الدخول بنجاح ✅"
   );
 
 }
 
 
-/* =========================================================
-   REGISTER
-========================================================= */
+/* =====================================================
+   REGISTER + TERMS
+===================================================== */
 
 function openRegister(){
 
   openModal(`
 
-    <h2 class="modal-title">
-      📝 إنشاء حساب جديد
+    <h2>
+      📝 إنشاء حساب
     </h2>
 
     <div class="form-group">
 
-      <label>الاسم الكامل *</label>
+      <label>
+        الاسم الكامل *
+      </label>
 
       <input
         id="regName"
@@ -1249,10 +1251,11 @@ function openRegister(){
 
     </div>
 
-
     <div class="form-group">
 
-      <label>رقم الهاتف *</label>
+      <label>
+        رقم الهاتف *
+      </label>
 
       <input
         id="regPhone"
@@ -1261,10 +1264,11 @@ function openRegister(){
 
     </div>
 
-
     <div class="form-group">
 
-      <label>البريد الإلكتروني *</label>
+      <label>
+        البريد الإلكتروني *
+      </label>
 
       <input
         id="regEmail"
@@ -1273,10 +1277,11 @@ function openRegister(){
 
     </div>
 
-
     <div class="form-group">
 
-      <label>كلمة المرور *</label>
+      <label>
+        كلمة المرور *
+      </label>
 
       <input
         id="regPassword"
@@ -1288,59 +1293,75 @@ function openRegister(){
 
     <div class="terms-box">
 
-      <label class="terms-label">
+      <strong>
+        شروط الاستخدام والمسؤولية
+      </strong>
 
-        <input
-          id="termsCheck"
-          type="checkbox">
+      <br><br>
 
-        <span>
+      باستخدامك KriDari فإنك توافق على أن المنصة
+      هي منصة تقنية لعرض إعلانات العقارات وربط
+      المستخدمين، وليست طرفًا في عقد الكراء بين
+      المعلن والمستأجر.
 
-          أوافق على
-          <span
-            class="text-link"
-            onclick="showTerms()">
-            شروط الاستخدام
-          </span>
+      <br><br>
 
-          و
+      يتحمل كل مستخدم مسؤولية المعلومات والصور
+      والأسعار والبيانات التي ينشرها، كما يتحمل
+      مسؤولية أي اتفاق أو معاملة تتم خارج المنصة.
 
-          <span
-            class="text-link"
-            onclick="showPrivacy()">
-            سياسة الخصوصية
-          </span>
+      <br><br>
 
-          وأؤكد أنني سأستخدم المنصة لأغراض قانونية
-          ولن أنشر معلومات أو إعلانات مضللة أو احتيالية.
+      يمنع نشر الإعلانات الوهمية أو الاحتيالية أو
+      المحتوى غير القانوني أو المضلل أو أي محتوى
+      يشتبه في ارتباطه بنشاط غير قانوني.
 
-        </span>
+      <br><br>
 
-      </label>
+      تحتفظ KriDari بحق مراجعة الإعلانات أو رفضها
+      أو حذفها أو تعليق الحسابات عند وجود مخالفة
+      أو بلاغات موثوقة.
+
+      <br><br>
+
+      لا يُعد ظهور الإعلان على المنصة ضمانًا لصحة
+      جميع المعلومات المقدمة من صاحبه، ولذلك يجب
+      على المستخدم إجراء التحقق المناسب قبل أي
+      دفع أو اتفاق أو زيارة.
+
+      <br><br>
+
+      <strong>
+        هذه الشروط لا تمنح إعفاءً قانونيًا مطلقًا
+        من أي مسؤولية تفرضها القوانين المعمول بها.
+      </strong>
 
     </div>
 
 
-    <div class="security-note">
+    <label class="consent">
 
-      ⚠️ KriDari منصة لعرض وربط العقارات فقط.
-      المستخدم مسؤول عن المعلومات والمحتوى الذي ينشره.
-      يجب التحقق من هوية الطرف الآخر والعقار قبل أي
-      دفع أو اتفاق أو مشاركة معلومات حساسة.
+      <input
+        id="regConsent"
+        type="checkbox">
 
-    </div>
+      <span>
+        أوافق على شروط الاستخدام والخصوصية،
+        وأقر بأنني مسؤول عن المعلومات والمحتوى
+        الذي أقدمه على المنصة.
+      </span>
+
+    </label>
 
 
     <div class="modal-actions">
 
-      <button
-        class="btn"
-        onclick="register()">
+      <button onclick="register()">
         إنشاء الحساب
       </button>
 
       <button
-        class="btn light"
+        class="secondary"
         onclick="openLogin()">
         لدي حساب
       </button>
@@ -1355,24 +1376,29 @@ function openRegister(){
 async function register(){
 
   const name =
-    document.getElementById("regName")
-    .value.trim();
+    document.getElementById(
+      "regName"
+    ).value.trim();
 
   const phone =
-    document.getElementById("regPhone")
-    .value.trim();
+    document.getElementById(
+      "regPhone"
+    ).value.trim();
 
   const email =
-    document.getElementById("regEmail")
-    .value.trim();
+    document.getElementById(
+      "regEmail"
+    ).value.trim();
 
   const password =
-    document.getElementById("regPassword")
-    .value;
+    document.getElementById(
+      "regPassword"
+    ).value;
 
-  const terms =
-    document.getElementById("termsCheck")
-    .checked;
+  const consent =
+    document.getElementById(
+      "regConsent"
+    ).checked;
 
 
   if(
@@ -1382,31 +1408,34 @@ async function register(){
     !password
   ){
 
-    showToast(
-      "يرجى ملء جميع المعلومات المطلوبة"
+    toast(
+      "يرجى ملء جميع المعلومات"
     );
 
     return;
+
   }
 
 
   if(password.length < 6){
 
-    showToast(
-      "كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل"
+    toast(
+      "كلمة المرور يجب أن تكون 6 أحرف على الأقل"
     );
 
     return;
+
   }
 
 
-  if(!terms){
+  if(!consent){
 
-    showToast(
-      "يجب الموافقة على شروط الاستخدام وسياسة الخصوصية"
+    toast(
+      "يجب الموافقة على شروط الاستخدام والخصوصية"
     );
 
     return;
+
   }
 
 
@@ -1414,28 +1443,37 @@ async function register(){
     data,
     error
   } =
-  await supabaseClient.auth.signUp({
+    await supabaseClient.auth.signUp({
 
-    email,
-    password,
+      email,
 
-    options:{
-      data:{
-        full_name:name,
-        phone:phone,
-        terms_accepted:true,
-        terms_version:"2026-08"
+      password,
+
+      options:{
+
+        data:{
+
+          full_name:name,
+
+          phone:phone,
+
+          terms_accepted:true,
+
+          terms_version:"2026-01"
+
+        }
+
       }
-    }
 
-  });
+    });
 
 
   if(error){
 
-    showToast(error.message);
+    toast(error.message);
 
     return;
+
   }
 
 
@@ -1444,20 +1482,24 @@ async function register(){
 
   if(data.session){
 
-    showToast(
+    toast(
       "تم إنشاء الحساب بنجاح 🎉"
     );
 
   }else{
 
-    showToast(
-      "تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتفعيله."
+    toast(
+      "تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتفعيل الحساب."
     );
 
   }
 
 }
 
+
+/* =====================================================
+   LOGOUT
+===================================================== */
 
 async function logout(){
 
@@ -1467,223 +1509,16 @@ async function logout(){
 
   updateNav();
 
-  showToast(
+  toast(
     "تم تسجيل الخروج"
   );
 
 }
 
 
-/* =========================================================
-   TERMS
-========================================================= */
-
-function showTerms(){
-
-  openModal(`
-
-    <h2 class="modal-title">
-      شروط استخدام KriDari
-    </h2>
-
-    <p class="muted">
-
-      آخر تحديث: أغسطس 2026
-
-    </p>
-
-    <h3>1. طبيعة المنصة</h3>
-
-    <p>
-      KriDari هي منصة إلكترونية تهدف إلى تسهيل عرض
-      العقارات المخصصة للكراء والتواصل بين المستخدمين.
-      KriDari ليست طرفًا في عقد الكراء بين المستخدمين.
-    </p>
-
-
-    <h3>2. مسؤولية المستخدم</h3>
-
-    <p>
-      يتحمل كل مستخدم مسؤولية المعلومات والإعلانات والصور
-      وأرقام الاتصال التي يقوم بإدخالها أو نشرها.
-      يمنع نشر معلومات كاذبة أو مضللة أو إعلانات وهمية.
-    </p>
-
-
-    <h3>3. المحتوى المشبوه أو غير القانوني</h3>
-
-    <p>
-      يمنع استخدام المنصة في أي نشاط غير قانوني أو احتيالي
-      أو لنشر محتوى مشبوه أو مسيء أو مخالف للقوانين.
-      يمكن للمستخدمين التبليغ عن أي إعلان يشتبهون في أنه
-      احتيالي أو مخالف.
-    </p>
-
-
-    <h3>4. المعاملات المالية</h3>
-
-    <p>
-      KriDari لا تستلم الأموال نيابة عن المستخدمين ولا
-      تضمن إتمام أي معاملة مالية بينهم.
-      يجب على المستخدم التحقق من هوية المالك والعقار
-      والوثائق قبل دفع أي مبلغ.
-    </p>
-
-
-    <h3>5. حدود مسؤولية المنصة</h3>
-
-    <p>
-      KriDari لا تضمن صحة أو دقة جميع المعلومات التي
-      ينشرها المستخدمون، ولا تضمن هوية المعلن أو ملكيته
-      للعقار أو صلاحية العقار للكراء.
-      تبقى العلاقة والتعاقد بين الأطراف المعنية.
-    </p>
-
-
-    <h3>6. الإجراءات ضد المخالفات</h3>
-
-    <p>
-      تحتفظ KriDari بحق مراجعة الإعلانات وحذف المحتوى
-      المخالف وتعليق أو إغلاق الحسابات التي تستخدم المنصة
-      بطريقة مخالفة لشروط الاستخدام أو القوانين.
-    </p>
-
-
-    <h3>7. التبليغ</h3>
-
-    <p>
-      إذا صادفت إعلانًا أو مستخدمًا مشبوهًا، يرجى استخدام
-      زر التبليغ الموجود في صفحة العقار.
-    </p>
-
-
-    <div class="security-note">
-
-      هذه الشروط تهدف إلى توضيح طبيعة المنصة وحدود
-      مسؤوليتها، ولا تشكل بحد ذاتها استشارة قانونية.
-      يوصى بمراجعة الصياغة القانونية النهائية من محامٍ
-      وفقًا للقوانين الجزائرية قبل إطلاق المنصة تجاريًا.
-
-    </div>
-
-  `);
-
-}
-
-
-/* =========================================================
-   PRIVACY
-========================================================= */
-
-function showPrivacy(){
-
-  openModal(`
-
-    <h2 class="modal-title">
-      🔒 سياسة الخصوصية
-    </h2>
-
-    <p class="muted">
-      آخر تحديث: أغسطس 2026
-    </p>
-
-    <h3>المعلومات التي قد نجمعها</h3>
-
-    <p>
-      عند إنشاء الحساب قد يتم تخزين الاسم ورقم الهاتف
-      والبريد الإلكتروني. وعند نشر عقار قد يتم تخزين
-      معلومات العقار والصور ورقم الاتصال الذي يختاره
-      المستخدم لإظهاره.
-    </p>
-
-    <h3>الغرض من استخدام المعلومات</h3>
-
-    <p>
-      تستخدم المعلومات لتوفير خدمات التسجيل ونشر العقارات
-      والتواصل وطلبات الزيارة والمفضلة وإدارة المنصة.
-    </p>
-
-    <h3>حماية الحساب</h3>
-
-    <p>
-      يجب على المستخدم المحافظة على سرية بيانات الدخول
-      وعدم مشاركة كلمة المرور مع الآخرين.
-    </p>
-
-    <h3>المحتوى والصور</h3>
-
-    <p>
-      المستخدم مسؤول عن امتلاكه الحق في نشر الصور
-      والمعلومات التي يقوم برفعها إلى المنصة.
-    </p>
-
-    <h3>طلبات الحذف</h3>
-
-    <p>
-      يمكن للمستخدم التواصل مع إدارة المنصة بخصوص حسابه
-      أو بياناته وفق الإمكانيات والإجراءات التي توفرها
-      المنصة والقوانين المعمول بها.
-    </p>
-
-  `);
-
-}
-
-
-/* =========================================================
-   SAFETY
-========================================================= */
-
-function showSafety(){
-
-  openModal(`
-
-    <h2 class="modal-title">
-      🚨 السلامة والتبليغ
-    </h2>
-
-    <p>
-      سلامتك مهمة. لا ترسل أموالًا أو وثائق شخصية أو
-      معلومات بنكية لأي شخص قبل التحقق منه بشكل مستقل.
-    </p>
-
-    <h3>متى يجب التبليغ؟</h3>
-
-    <ul>
-
-      <li>إعلان يبدو وهميًا أو غير واقعي.</li>
-
-      <li>طلب تحويل أموال بطريقة مشبوهة.</li>
-
-      <li>معلومات أو صور لا تبدو مرتبطة بالعقار.</li>
-
-      <li>محتوى غير قانوني أو مسيء.</li>
-
-      <li>انتحال هوية شخص أو مالك عقار.</li>
-
-    </ul>
-
-    <p>
-      استخدم زر 🚨 تبليغ عن إعلان الموجود داخل تفاصيل
-      العقار. سيتم إرسال البلاغ إلى إدارة المنصة للمراجعة.
-    </p>
-
-    <div class="security-note">
-
-      في الحالات التي تتعلق بخطر حقيقي أو نشاط إجرامي،
-      لا تعتمد على المنصة وحدها، وتواصل مع الجهات المختصة
-      وفق الإجراءات القانونية المعمول بها في بلدك.
-
-    </div>
-
-  `);
-
-}
-
-
-/* =========================================================
+/* =====================================================
    LOAD PROPERTIES
-========================================================= */
+===================================================== */
 
 async function loadProperties(){
 
@@ -1691,37 +1526,43 @@ async function loadProperties(){
     data,
     error
   } =
-  await supabaseClient
-    .from("properties")
-    .select(`
-      *,
-      property_images(
-        id,
-        image_path,
-        is_main,
-        sort_order
-      )
-    `)
-    .eq("status","approved")
-    .order("created_at",{
-      ascending:false
-    });
+    await supabaseClient
+
+      .from("properties")
+
+      .select(`
+        *,
+        property_images (
+          id,
+          image_path,
+          is_main,
+          sort_order
+        )
+      `)
+
+      .eq("status","approved")
+
+      .order("created_at",{
+        ascending:false
+      });
 
 
   if(error){
 
     console.error(error);
 
-    document.getElementById("cards").innerHTML = `
+    document.getElementById(
+      "cards"
+    ).innerHTML = `
 
       <div class="empty">
 
         <h3>
-          تعذر تحميل العقارات
+          حدث خطأ في تحميل العقارات
         </h3>
 
         <p>
-          تحقق من اتصال قاعدة البيانات ثم أعد تحميل الصفحة.
+          حاول تحديث الصفحة.
         </p>
 
       </div>
@@ -1729,6 +1570,7 @@ async function loadProperties(){
     `;
 
     return;
+
   }
 
 
@@ -1742,9 +1584,9 @@ async function loadProperties(){
 }
 
 
-/* =========================================================
+/* =====================================================
    IMAGE URL
-========================================================= */
+===================================================== */
 
 function imageURL(path){
 
@@ -1753,26 +1595,31 @@ function imageURL(path){
   const {
     data
   } =
-  supabaseClient.storage
-    .from("property-images")
-    .getPublicUrl(path);
+    supabaseClient
+      .storage
+      .from("property-images")
+      .getPublicUrl(path);
 
   return data.publicUrl;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RENDER PROPERTIES
-========================================================= */
+===================================================== */
 
 function renderProperties(list){
 
   const cards =
-    document.getElementById("cards");
+    document.getElementById(
+      "cards"
+    );
 
-  document.getElementById("count")
-    .textContent =
+
+  document.getElementById(
+    "count"
+  ).textContent =
     `${list.length} عقار`;
 
 
@@ -1781,10 +1628,6 @@ function renderProperties(list){
     cards.innerHTML = `
 
       <div class="empty">
-
-        <div style="font-size:50px">
-          🏠
-        </div>
 
         <h3>
           لا توجد عقارات متاحة حاليًا
@@ -1799,6 +1642,7 @@ function renderProperties(list){
     `;
 
     return;
+
   }
 
 
@@ -1815,19 +1659,20 @@ function renderProperties(list){
 
 
       const first =
-        images.find(x => x.is_main) ||
+        images.find(
+          x => x.is_main
+        ) ||
         images[0];
 
 
       const image =
         first
-        ? imageURL(first.image_path)
-        : "";
+          ? imageURL(first.image_path)
+          : "";
 
 
-      const rentalType =
-        p.rent_type ||
-        p.rental_type ||
+      const period =
+        p.rental_period ||
         "monthly";
 
 
@@ -1837,36 +1682,46 @@ function renderProperties(list){
 
           <div class="card-image">
 
-            <div class="card-badge">
-              ${
-                images.length
-                ? `📷 ${images.length}`
-                : "KriDari"
-              }
-            </div>
-
-            <div class="rent-badge">
-              ${rentLabel(rentalType)}
-            </div>
-
             ${
               image
+
               ? `
+
                 <img
                   src="${image}"
                   alt="${escapeHTML(p.title)}"
                   loading="lazy">
+
               `
+
               : `
+
                 <div style="
                   height:100%;
                   display:flex;
                   align-items:center;
                   justify-content:center;
-                  font-size:65px;">
+                  font-size:70px;">
                   🏠
                 </div>
+
               `
+            }
+
+
+            ${
+              images.length
+
+              ? `
+
+                <span class="image-count">
+                  📷 ${images.length}
+                </span>
+
+              `
+
+              : ""
+
             }
 
           </div>
@@ -1876,21 +1731,19 @@ function renderProperties(list){
 
             <div class="price">
 
-              ${Number(p.price || 0)
-                .toLocaleString("fr-DZ")}
-
-              DA
-
-              <span style="
-                font-size:13px;
-                font-weight:normal;
-                color:#737d79">
-
-                / ${rentLabel(rentalType)}
-
-              </span>
+              ${priceLabel(
+                p.price,
+                period
+              )}
 
             </div>
+
+
+            <span class="rental-period">
+
+              🗓️ كراء ${periodLabel(period)}
+
+            </span>
 
 
             <h3>
@@ -1898,44 +1751,55 @@ function renderProperties(list){
             </h3>
 
 
-            <div class="meta">
+            <p class="muted">
 
               📍
               ${escapeHTML(p.city || "")}،
               ${escapeHTML(p.wilaya || "")}
 
-              <br>
+            </p>
+
+
+            <p class="muted">
 
               🏠
-              ${escapeHTML(p.property_type || "")}
+              ${escapeHTML(
+                p.property_type || ""
+              )}
 
               ·
-              🚪 ${p.rooms || 1} غرف
 
-              <br>
+              🚪
+              ${p.rooms || 1}
+              غرف
 
-              🛋️
+              ·
+
               ${
                 p.furnished
-                ? "مفروشة"
-                : "غير مفروشة"
+                  ? "🛋️ مفروشة"
+                  : "غير مفروشة"
               }
 
-            </div>
+            </p>
 
 
-            <div class="card-actions">
+            <div class="actions">
 
               <button
-                class="btn"
                 onclick="showDetails('${p.id}')">
+
                 التفاصيل
+
               </button>
 
+
               <button
-                class="btn light"
+                class="secondary"
                 onclick="favorite('${p.id}')">
-                ♡
+
+                ❤️
+
               </button>
 
             </div>
@@ -1951,9 +1815,9 @@ function renderProperties(list){
 }
 
 
-/* =========================================================
+/* =====================================================
    SEARCH
-========================================================= */
+===================================================== */
 
 function searchProperties(){
 
@@ -1967,17 +1831,25 @@ function searchProperties(){
       "searchType"
     ).value;
 
-  const rentType =
+  const period =
     document.getElementById(
-      "searchRentType"
+      "searchPeriod"
     ).value;
+
+  const price =
+    Number(
+      document.getElementById(
+        "searchPrice"
+      ).value
+    );
 
   const text =
     document.getElementById(
       "searchText"
-    ).value
-      .trim()
-      .toLowerCase();
+    )
+    .value
+    .trim()
+    .toLowerCase();
 
 
   const result =
@@ -1993,33 +1865,36 @@ function searchProperties(){
         p.property_type === type;
 
 
-      const currentRentType =
-        p.rent_type ||
-        p.rental_type ||
-        "monthly";
-
-
       const c =
-        !rentType ||
-        currentRentType === rentType;
-
-
-      const combined =
-        `
-          ${p.title || ""}
-          ${p.city || ""}
-          ${p.wilaya || ""}
-          ${p.address || ""}
-        `
-        .toLowerCase();
+        !period ||
+        (p.rental_period || "monthly") === period;
 
 
       const d =
+        !price ||
+        Number(p.price) <= price;
+
+
+      const combined =
+        `${p.title || ""}
+         ${p.city || ""}
+         ${p.wilaya || ""}
+         ${p.address || ""}`
+        .toLowerCase();
+
+
+      const e =
         !text ||
         combined.includes(text);
 
 
-      return a && b && c && d;
+      return (
+        a &&
+        b &&
+        c &&
+        d &&
+        e
+      );
 
     });
 
@@ -2029,9 +1904,9 @@ function searchProperties(){
 }
 
 
-/* =========================================================
+/* =====================================================
    ADD PROPERTY
-========================================================= */
+===================================================== */
 
 function openAddProperty(){
 
@@ -2039,24 +1914,23 @@ function openAddProperty(){
 
     openModal(`
 
-      <h2 class="modal-title">
+      <h2>
         🔐 تسجيل الدخول مطلوب
       </h2>
 
       <p>
-        يجب إنشاء حساب أو تسجيل الدخول قبل نشر عقارك.
+        يجب إنشاء حساب أو تسجيل الدخول
+        قبل إضافة عقارك.
       </p>
 
       <div class="modal-actions">
 
-        <button
-          class="btn"
-          onclick="openLogin()">
+        <button onclick="openLogin()">
           تسجيل الدخول
         </button>
 
         <button
-          class="btn light"
+          class="secondary"
           onclick="openRegister()">
           إنشاء حساب
         </button>
@@ -2066,6 +1940,7 @@ function openAddProperty(){
     `);
 
     return;
+
   }
 
 
@@ -2076,8 +1951,8 @@ function openAddProperty(){
 
   openModal(`
 
-    <h2 class="modal-title">
-      🏠 نشر عقار جديد
+    <h2>
+      🏠 أضف عقارك
     </h2>
 
 
@@ -2089,12 +1964,13 @@ function openAddProperty(){
 
       <input
         id="pTitle"
-        placeholder="مثال: شقة F3 في موقع هادئ">
+        placeholder="مثال: شقة F3 جميلة">
 
     </div>
 
 
     <div class="grid2">
+
 
       <div class="form-group">
 
@@ -2189,9 +2065,7 @@ function openAddProperty(){
           طبيعة الكراء *
         </label>
 
-        <select
-          id="pRentType"
-          onchange="updatePriceLabel()">
+        <select id="pRentalPeriod">
 
           <option value="monthly">
             شهري
@@ -2212,8 +2086,8 @@ function openAddProperty(){
 
       <div class="form-group">
 
-        <label id="priceLabel">
-          السعر الشهري DA *
+        <label>
+          السعر *
         </label>
 
         <input
@@ -2228,7 +2102,7 @@ function openAddProperty(){
       <div class="form-group">
 
         <label>
-          حالة العقار
+          الحالة
         </label>
 
         <select id="pFurnished">
@@ -2286,451 +2160,481 @@ function openAddProperty(){
 
       <textarea
         id="pDescription"
-        placeholder="اكتب تفاصيل العقار ومميزاته..."></textarea>
+        placeholder="اكتب تفاصيل العقار..."></textarea>
 
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        صور العقار *
-      </label>
-
-      <input
-        id="pImages"
-        type="file"
-        accept="image/jpeg,image/png,image/webp"
-        multiple
-        onchange="selectImages(event)">
-
-      <p class="muted">
-        الحد الأقصى 10 صور، و5 MB لكل صورة.
-      </p>
-
-      <div
-        id="previews"
-        class="previews">
-      </div>
-
-    </div>
+```
+</div>
 
 
-    <div class="security-note">
+<div class="form-group">
 
-      🔐 جميع الإعلانات الجديدة تخضع للمراجعة قبل
-      ظهورها للعامة. يمنع نشر إعلانات وهمية أو
-      معلومات مضللة أو أي محتوى غير قانوني.
+  <label>
+    صور العقار *
+  </label>
 
-    </div>
+  <input
+    id="pImages"
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+    multiple
+    onchange="selectImages(event)">
 
+  <p class="muted">
+    يمكنك اختيار حتى 10 صور.
+    الحد الأقصى 5 MB للصورة.
+  </p>
 
-    <div class="modal-actions">
+  <div
+    id="previews"
+    class="previews">
+  </div>
 
-      <button
-        class="btn"
-        onclick="publishProperty()">
-        🚀 إرسال للمراجعة
-      </button>
-
-      <button
-        class="btn light"
-        onclick="closeModal()">
-        إلغاء
-      </button>
-
-    </div>
-
-  `);
-
-}
+</div>
 
 
-/* =========================================================
-   PRICE LABEL
-========================================================= */
+<div class="terms-box">
 
-function updatePriceLabel(){
+  <strong>
+    مسؤولية الناشر
+  </strong>
 
-  const type =
-    document.getElementById(
-      "pRentType"
-    ).value;
+  <br><br>
 
-  const label =
-    document.getElementById(
-      "priceLabel"
-    );
+  أقر بأنني مسؤول عن صحة المعلومات والصور
+  والسعر ومحتوى الإعلان الذي أنشره، وأتعهد
+  بعدم نشر أي إعلان وهمي أو مضلل أو غير قانوني.
+
+</div>
 
 
-  if(type === "daily"){
+<label class="consent">
 
-    label.textContent =
-      "السعر اليومي DA *";
+  <input
+    id="propertyConsent"
+    type="checkbox">
 
-  }else if(type === "yearly"){
+  <span>
+    أوافق على شروط النشر وأتحمل مسؤولية
+    المعلومات والمحتوى الذي أقدمه.
+  </span>
 
-    label.textContent =
-      "السعر السنوي DA *";
+</label>
 
-  }else{
 
-    label.textContent =
-      "السعر الشهري DA *";
+<div class="modal-actions">
 
-  }
+  <button
+    onclick="publishProperty()">
+
+    🚀 إرسال للمراجعة
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="closeModal()">
+
+    إلغاء
+
+  </button>
+
+</div>
+```
+
+`);
 
 }
 
-
-/* =========================================================
-   IMAGE SELECT
-========================================================= */
+/* =====================================================
+SELECT IMAGES
+===================================================== */
 
 function selectImages(event){
 
-  const files =
-    Array.from(
-      event.target.files || []
-    );
+const files =
+Array.from(
+event.target.files || []
+);
 
+if(!files.length) return;
 
-  if(!files.length) return;
+for(const file of files){
 
+```
+if(
+  !file.type.startsWith("image/")
+){
 
-  for(const file of files){
+  toast(
+    "يسمح فقط بملفات الصور"
+  );
 
-    if(
-      !file.type.startsWith("image/")
-    ){
-
-      showToast(
-        "يسمح فقط بملفات الصور"
-      );
-
-      continue;
-    }
-
-
-    if(
-      file.size >
-      5 * 1024 * 1024
-    ){
-
-      showToast(
-        `الصورة ${file.name} أكبر من 5 MB`
-      );
-
-      continue;
-    }
-
-
-    if(selectedFiles.length >= 10){
-
-      showToast(
-        "الحد الأقصى 10 صور"
-      );
-
-      break;
-    }
-
-
-    selectedFiles.push(file);
-
-  }
-
-
-  renderPreviews();
+  continue;
 
 }
 
+
+if(
+  file.size >
+  5 * 1024 * 1024
+){
+
+  toast(
+    `الصورة ${file.name} أكبر من 5 MB`
+  );
+
+  continue;
+
+}
+
+
+if(
+  selectedFiles.length >= 10
+){
+
+  toast(
+    "الحد الأقصى 10 صور"
+  );
+
+  break;
+
+}
+
+
+selectedFiles.push(file);
+```
+
+}
+
+renderPreviews();
+
+}
 
 function renderPreviews(){
 
-  const container =
-    document.getElementById(
-      "previews"
-    );
+const container =
+document.getElementById(
+"previews"
+);
+
+if(!container) return;
+
+container.innerHTML = "";
+
+selectedFiles.forEach(
+(file,index) => {
+
+```
+  const url =
+    URL.createObjectURL(file);
 
 
-  if(!container) return;
+  container.innerHTML += `
 
+    <div class="preview">
 
-  container.innerHTML = "";
+      <img
+        src="${url}"
+        alt="معاينة الصورة">
 
+      ${
+        index === mainImageIndex
 
-  selectedFiles.forEach(
-    (file,index) => {
+        ? `
 
-      const url =
-        URL.createObjectURL(file);
+          <div class="main-label">
+            ⭐ الرئيسية
+          </div>
 
+        `
 
-      container.innerHTML += `
+        : ""
 
-        <div class="
-          preview
-          ${index === mainImageIndex
-            ? "main"
-            : ""}
-        ">
+      }
 
-          <img src="${url}">
+    </div>
 
-          ${
-            index === mainImageIndex
-            ? `
-              <div class="preview-label">
-                ⭐ الصورة الرئيسية
-              </div>
-            `
-            : ""
-          }
+  `;
 
-        </div>
+}
+```
 
-      `;
-
-    }
-  );
+);
 
 }
 
-
-/* =========================================================
-   PUBLISH
-========================================================= */
+/* =====================================================
+PUBLISH PROPERTY
+===================================================== */
 
 async function publishProperty(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    showToast(
-      "يجب تسجيل الدخول"
-    );
+```
+toast(
+  "يجب تسجيل الدخول"
+);
 
-    return;
-  }
+return;
+```
+
+}
+
+const title =
+document.getElementById(
+"pTitle"
+).value.trim();
+
+const wilaya =
+document.getElementById(
+"pWilaya"
+).value;
+
+const city =
+document.getElementById(
+"pCity"
+).value.trim();
+
+const type =
+document.getElementById(
+"pType"
+).value;
+
+const rooms =
+Number(
+document.getElementById(
+"pRooms"
+).value
+);
+
+const rentalPeriod =
+document.getElementById(
+"pRentalPeriod"
+).value;
+
+const price =
+Number(
+document.getElementById(
+"pPrice"
+).value
+);
+
+const furnished =
+document.getElementById(
+"pFurnished"
+).value === "true";
+
+const address =
+document.getElementById(
+"pAddress"
+).value.trim();
+
+const phone =
+document.getElementById(
+"pPhone"
+).value.trim();
+
+const description =
+document.getElementById(
+"pDescription"
+).value.trim();
+
+const consent =
+document.getElementById(
+"propertyConsent"
+).checked;
+
+if(
+!title ||
+!wilaya ||
+!city ||
+!type ||
+!price ||
+!phone
+){
+
+```
+toast(
+  "يرجى ملء جميع المعلومات الأساسية"
+);
+
+return;
+```
+
+}
+
+if(!consent){
+
+```
+toast(
+  "يجب الموافقة على شروط النشر"
+);
+
+return;
+```
+
+}
+
+if(!selectedFiles.length){
+
+```
+toast(
+  "أضف صورة واحدة على الأقل"
+);
+
+return;
+```
+
+}
+
+try{
+
+```
+const {
+  data:property,
+  error:propertyError
+} =
+  await supabaseClient
+
+    .from("properties")
+
+    .insert({
+
+      owner_id:
+        currentUser.id,
+
+      title,
+
+      description,
+
+      wilaya,
+
+      city,
+
+      address,
+
+      property_type:
+        type,
+
+      rooms:
+        rooms || 1,
+
+      price,
+
+      rental_period:
+        rentalPeriod,
+
+      furnished,
+
+      phone,
+
+      status:
+        "pending"
+
+    })
+
+    .select()
+
+    .single();
 
 
-  const title =
-    document.getElementById(
-      "pTitle"
-    ).value.trim();
+if(propertyError){
 
-  const wilaya =
-    document.getElementById(
-      "pWilaya"
-    ).value;
+  throw propertyError;
 
-  const city =
-    document.getElementById(
-      "pCity"
-    ).value.trim();
-
-  const type =
-    document.getElementById(
-      "pType"
-    ).value;
-
-  const rooms =
-    Number(
-      document.getElementById(
-        "pRooms"
-      ).value
-    );
-
-  const rentType =
-    document.getElementById(
-      "pRentType"
-    ).value;
-
-  const price =
-    Number(
-      document.getElementById(
-        "pPrice"
-      ).value
-    );
-
-  const furnished =
-    document.getElementById(
-      "pFurnished"
-    ).value === "true";
-
-  const address =
-    document.getElementById(
-      "pAddress"
-    ).value.trim();
-
-  const phone =
-    document.getElementById(
-      "pPhone"
-    ).value.trim();
-
-  const description =
-    document.getElementById(
-      "pDescription"
-    ).value.trim();
+}
 
 
-  if(
-    !title ||
-    !wilaya ||
-    !city ||
-    !type ||
-    !rentType ||
-    !price ||
-    !phone
-  ){
+for(
+  let i=0;
+  i<selectedFiles.length;
+  i++
+){
 
-    showToast(
-      "يرجى ملء جميع المعلومات الأساسية"
-    );
-
-    return;
-  }
+  const file =
+    selectedFiles[i];
 
 
-  if(selectedFiles.length === 0){
-
-    showToast(
-      "أضف صورة واحدة على الأقل"
-    );
-
-    return;
-  }
+  const safeName =
+    file.name
+      .replace(
+        /[^a-zA-Z0-9._-]/g,
+        "_"
+      );
 
 
-  try{
+  const path =
+    `${currentUser.id}/${property.id}/${crypto.randomUUID()}-${safeName}`;
 
-    const {
-      data:property,
-      error:propertyError
-    } =
+
+  const {
+    error:uploadError
+  } =
     await supabaseClient
-      .from("properties")
+
+      .storage
+
+      .from("property-images")
+
+      .upload(
+        path,
+        file,
+        {
+
+          cacheControl:
+            "3600",
+
+          upsert:
+            false,
+
+          contentType:
+            file.type
+
+        }
+      );
+
+
+  if(uploadError){
+
+    console.error(
+      uploadError
+    );
+
+    continue;
+
+  }
+
+
+  const {
+    error:imageError
+  } =
+    await supabaseClient
+
+      .from("property_images")
+
       .insert({
 
-        owner_id:currentUser.id,
+        property_id:
+          property.id,
 
-        title,
-
-        description,
-
-        wilaya,
-
-        city,
-
-        address,
-
-        property_type:type,
-
-        rooms:rooms || 1,
-
-        price,
-
-        furnished,
-
-        phone,
-
-        rent_type:rentType,
-
-        status:"pending"
-
-      })
-      .select()
-      .single();
-
-
-    if(propertyError){
-
-      throw propertyError;
-
-    }
-
-
-    for(
-      let i=0;
-      i<selectedFiles.length;
-      i++
-    ){
-
-      const file =
-        selectedFiles[i];
-
-
-      const safeName =
-        file.name
-          .replace(
-            /[^a-zA-Z0-9._-]/g,
-            "_"
-          );
-
-
-      const path =
-        `${currentUser.id}/${property.id}/${crypto.randomUUID()}-${safeName}`;
-
-
-      const {
-        error:uploadError
-      } =
-      await supabaseClient.storage
-        .from("property-images")
-        .upload(
+        image_path:
           path,
-          file,
-          {
-            cacheControl:"3600",
-            upsert:false,
-            contentType:file.type
-          }
-        );
+
+        is_main:
+          i === mainImageIndex,
+
+        sort_order:
+          i
+
+      });
 
 
-      if(uploadError){
+  if(imageError){
 
-        console.error(uploadError);
-
-        continue;
-      }
-
-
-      await supabaseClient
-        .from("property_images")
-        .insert({
-
-          property_id:property.id,
-
-          image_path:path,
-
-          is_main:
-            i === mainImageIndex,
-
-          sort_order:i
-
-        });
-
-    }
-
-
-    selectedFiles = [];
-
-    closeModal();
-
-    showToast(
-      "تم إرسال العقار للمراجعة بنجاح ✅"
-    );
-
-    await loadProperties();
-
-
-  }catch(error){
-
-    console.error(error);
-
-    showToast(
-      "حدث خطأ أثناء نشر العقار: " +
-      (error.message || "")
+    console.error(
+      imageError
     );
 
   }
@@ -2738,800 +2642,1099 @@ async function publishProperty(){
 }
 
 
-/* =========================================================
-   DETAILS
-========================================================= */
+closeModal();
+
+toast(
+  "تم إرسال العقار للمراجعة بنجاح ✅"
+);
+
+
+selectedFiles = [];
+
+await loadProperties();
+```
+
+}catch(error){
+
+```
+console.error(error);
+
+toast(
+  "حدث خطأ أثناء نشر العقار: " +
+  (error.message || "")
+);
+```
+
+}
+
+}
+
+/* =====================================================
+PROPERTY DETAILS
+===================================================== */
 
 function showDetails(id){
 
-  const property =
-    currentProperties.find(
-      p => p.id === id
-    );
+const property =
+currentProperties.find(
+p => p.id === id
+);
+
+if(!property) return;
+
+const images =
+(property.property_images || [])
+.sort(
+(a,b) =>
+(a.sort_order || 0) -
+(b.sort_order || 0)
+);
+
+const period =
+property.rental_period ||
+"monthly";
+
+let gallery = "";
+
+if(images.length){
+
+```
+const main =
+  images.find(
+    x => x.is_main
+  ) ||
+  images[0];
 
 
-  if(!property) return;
+gallery = `
+
+  <img
+    id="mainGalleryImage"
+    class="gallery-main"
+    src="${imageURL(main.image_path)}"
+    alt="${escapeHTML(property.title)}">
 
 
-  const images =
-    (property.property_images || [])
-      .sort(
-        (a,b) =>
-          (a.sort_order || 0) -
-          (b.sort_order || 0)
-      );
+  <div class="gallery-thumbs">
 
+    ${images.map((x,index) => `
 
-  const main =
-    images.find(x => x.is_main) ||
-    images[0];
+      <div
+        class="gallery-thumb ${x.id === main.id ? "active" : ""}"
+        onclick="changeGalleryImage(
+          '${imageURL(x.image_path)}',
+          this
+        )">
 
-
-  const others =
-    images
-      .filter(
-        x =>
-          !main ||
-          x.id !== main.id
-      )
-      .slice(0,4);
-
-
-  let gallery = "";
-
-
-  if(main){
-
-    gallery = `
-
-      <div class="gallery">
-
-        <div class="gallery-main">
-
-          <img
-            src="${imageURL(main.image_path)}"
-            alt="${escapeHTML(property.title)}">
-
-        </div>
-
-        <div class="gallery-side">
-
-          ${others.map(
-            x => `
-
-              <img
-                src="${imageURL(x.image_path)}"
-                alt="صورة العقار">
-
-            `
-          ).join("")}
-
-        </div>
+        <img
+          src="${imageURL(x.image_path)}"
+          alt="صورة العقار">
 
       </div>
 
-    `;
+    `).join("")}
 
-  }else{
+  </div>
 
-    gallery = `
+`;
+```
 
-      <div style="
-        height:260px;
-        border-radius:10px;
-        background:#e7ebe8;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:70px;
-        margin-bottom:20px">
-        🏠
+}else{
+
+```
+gallery = `
+
+  <div style="
+    height:260px;
+    background:#e9eeeb;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:75px;
+    margin-bottom:20px">
+    🏠
+  </div>
+
+`;
+```
+
+}
+
+openModal(`
+
+```
+<h2>
+  ${escapeHTML(property.title)}
+</h2>
+
+
+${gallery}
+
+
+<div class="detail-info">
+
+  <div class="detail-price">
+
+    ${priceLabel(
+      property.price,
+      period
+    )}
+
+  </div>
+
+  <span class="rental-period">
+
+    🗓️ كراء ${periodLabel(period)}
+
+  </span>
+
+
+  <div class="detail-grid">
+
+    <div class="detail-item">
+
+      <div class="detail-label">
+        الموقع
       </div>
 
-    `;
-
-  }
-
-
-  const rentType =
-    property.rent_type ||
-    property.rental_type ||
-    "monthly";
-
-
-  openModal(`
-
-    <h2 class="modal-title">
-      ${escapeHTML(property.title)}
-    </h2>
-
-    ${gallery}
-
-
-    <div class="property-info">
-
-      <div class="info-row">
-
-        <span>
-          📍 الموقع
-        </span>
-
-        <strong>
-          ${escapeHTML(property.city || "")}،
-          ${escapeHTML(property.wilaya || "")}
-        </strong>
-
-      </div>
-
-
-      <div class="info-row">
-
-        <span>
-          🏠 نوع العقار
-        </span>
-
-        <strong>
-          ${escapeHTML(property.property_type || "")}
-        </strong>
-
-      </div>
-
-
-      <div class="info-row">
-
-        <span>
-          🚪 الغرف
-        </span>
-
-        <strong>
-          ${property.rooms || 1}
-        </strong>
-
-      </div>
-
-
-      <div class="info-row">
-
-        <span>
-          📅 طبيعة الكراء
-        </span>
-
-        <strong>
-          ${rentLabel(rentType)}
-        </strong>
-
-      </div>
-
-
-      <div class="info-row">
-
-        <span>
-          💰 السعر
-        </span>
-
-        <strong style="color:var(--primary)">
-          ${Number(property.price || 0)
-            .toLocaleString("fr-DZ")}
-          DA / ${rentLabel(rentType)}
-        </strong>
-
-      </div>
-
-
-      <div class="info-row">
-
-        <span>
-          🛋️ الحالة
-        </span>
-
-        <strong>
-          ${
-            property.furnished
-            ? "مفروشة"
-            : "غير مفروشة"
-          }
-        </strong>
-
-      </div>
+      📍
+      ${escapeHTML(property.city || "")}،
+      ${escapeHTML(property.wilaya || "")}
 
     </div>
 
 
-    <h3>
-      وصف العقار
-    </h3>
+    <div class="detail-item">
 
-    <p class="muted">
+      <div class="detail-label">
+        نوع العقار
+      </div>
+
+      🏠
       ${escapeHTML(
-        property.description ||
-        "لا يوجد وصف."
+        property.property_type || ""
+      )}
+
+    </div>
+
+
+    <div class="detail-item">
+
+      <div class="detail-label">
+        الغرف
+      </div>
+
+      🚪
+      ${property.rooms || 1}
+
+    </div>
+
+
+    <div class="detail-item">
+
+      <div class="detail-label">
+        الحالة
+      </div>
+
+      ${
+        property.furnished
+          ? "🛋️ مفروشة"
+          : "غير مفروشة"
+      }
+
+    </div>
+
+  </div>
+
+</div>
+
+
+${
+  property.address
+
+  ? `
+
+    <p>
+      📍
+      <strong>
+        العنوان:
+      </strong>
+
+      ${escapeHTML(
+        property.address
       )}
     </p>
 
+  `
 
-    <div class="modal-actions">
-
-      <button
-        class="btn"
-        onclick="requestVisit('${property.id}')">
-        📅 طلب زيارة
-      </button>
-
-      <button
-        class="btn light"
-        onclick="callOwner('${escapeHTML(property.phone || "")}')">
-        📞 الاتصال
-      </button>
-
-    </div>
-
-
-    <div style="margin-top:10px">
-
-      <button
-        class="btn danger"
-        style="width:100%"
-        onclick="openReport('${property.id}')">
-        🚨 تبليغ عن إعلان مشبوه
-      </button>
-
-    </div>
-
-
-    <div class="security-note">
-
-      تنبيه: لا ترسل أموالًا أو وثائق شخصية قبل
-      التحقق من هوية الطرف الآخر والعقار.
-
-    </div>
-
-  `);
+  : ""
 
 }
 
 
-/* =========================================================
-   REPORT
-========================================================= */
+<div>
 
-function openReport(propertyId){
+  <h3>
+    📝 وصف العقار
+  </h3>
 
-  if(!currentUser){
+  <p class="muted">
 
-    openLogin();
+    ${escapeHTML(
+      property.description ||
+      "لا يوجد وصف."
+    )}
 
-    return;
-  }
+  </p>
 
-
-  openModal(`
-
-    <h2 class="modal-title">
-      🚨 التبليغ عن إعلان
-    </h2>
-
-    <p class="muted">
-      اختر السبب الذي يجعلك تعتقد أن الإعلان مخالف
-      أو مشبوه.
-    </p>
+</div>
 
 
-    <button
-      class="report-reason"
-      onclick="submitReport('${propertyId}','إعلان وهمي')">
-      🏠 إعلان وهمي أو غير موجود
-    </button>
+<div class="modal-actions">
+
+  <button
+    onclick="requestVisit('${property.id}')">
+
+    📅 طلب زيارة
+
+  </button>
 
 
-    <button
-      class="report-reason"
-      onclick="submitReport('${propertyId}','احتيال أو طلب أموال مشبوه')">
-      💰 احتيال أو طلب أموال مشبوه
-    </button>
+  <button
+    class="secondary"
+    onclick="callOwner('${escapeHTML(
+      property.phone || ""
+    )}')">
+
+    📞 الاتصال
+
+  </button>
+
+</div>
 
 
-    <button
-      class="report-reason"
-      onclick="submitReport('${propertyId}','معلومات خاطئة')">
-      ⚠️ معلومات أو صور مضللة
-    </button>
+<div class="report-box">
 
+  <strong>
+    ⚠️ هل ترى شيئًا مشبوهًا؟
+  </strong>
 
-    <button
-      class="report-reason"
-      onclick="submitReport('${propertyId}','محتوى غير قانوني')">
-      🚫 محتوى غير قانوني أو مخالف
-    </button>
+  <p class="muted">
 
+    إذا كان الإعلان وهميًا أو يحتوي على
+    معلومات مشبوهة أو محتوى غير قانوني،
+    يمكنك إرسال بلاغ لمراجعته.
 
-    <div class="form-group" style="margin-top:15px">
+  </p>
 
-      <label>
-        تفاصيل إضافية
-      </label>
+  <button
+    class="danger"
+    onclick="reportProperty('${property.id}')">
 
-      <textarea
-        id="reportDetails"
-        placeholder="اكتب ملاحظتك إن وجدت..."></textarea>
+    🚩 الإبلاغ عن هذا الإعلان
 
-    </div>
+  </button>
 
+</div>
+```
 
-    <button
-      class="btn danger"
-      style="width:100%"
-      onclick="submitReport('${propertyId}','سبب آخر')">
-      إرسال التبليغ
-    </button>
-
-  `);
+`);
 
 }
 
+/* =====================================================
+GALLERY CHANGE
+===================================================== */
 
-async function submitReport(
-  propertyId,
-  reason
+function changeGalleryImage(
+url,
+element
 ){
 
-  if(!currentUser){
+const main =
+document.getElementById(
+"mainGalleryImage"
+);
 
-    openLogin();
+if(main){
 
-    return;
-  }
-
-
-  const detailsEl =
-    document.getElementById(
-      "reportDetails"
-    );
-
-
-  const details =
-    detailsEl
-    ? detailsEl.value.trim()
-    : "";
-
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("property_reports")
-    .insert({
-
-      property_id:propertyId,
-
-      reporter_id:currentUser.id,
-
-      reason,
-
-      details,
-
-      status:"pending"
-
-    });
-
-
-  if(error){
-
-    console.error(error);
-
-    showToast(
-      "تعذر إرسال التبليغ: " +
-      error.message
-    );
-
-    return;
-  }
-
-
-  closeModal();
-
-  showToast(
-    "تم إرسال التبليغ إلى الإدارة ✅"
-  );
+```
+main.src = url;
+```
 
 }
 
+document
+.querySelectorAll(
+".gallery-thumb"
+)
+.forEach(
+x => x.classList.remove(
+"active"
+)
+);
 
-/* =========================================================
-   VISIT
-========================================================= */
+element.classList.add(
+"active"
+);
+
+}
+
+/* =====================================================
+REPORT PROPERTY
+===================================================== */
+
+function reportProperty(propertyId){
+
+openModal(`
+
+```
+<h2>
+  🚩 التبليغ عن إعلان
+</h2>
+
+<p class="muted">
+
+  استخدم هذا النموذج فقط للإبلاغ عن
+  إعلان تعتقد أنه وهمي أو مشبوه أو
+  مخالف لشروط KriDari.
+
+</p>
+
+
+<div class="form-group">
+
+  <label>
+    سبب التبليغ
+  </label>
+
+  <select id="reportReason">
+
+    <option value="">
+      اختر السبب
+    </option>
+
+    <option>
+      إعلان وهمي
+    </option>
+
+    <option>
+      احتيال أو طلب دفع مشبوه
+    </option>
+
+    <option>
+      معلومات غير صحيحة
+    </option>
+
+    <option>
+      محتوى غير قانوني
+    </option>
+
+    <option>
+      صور لا تخص العقار
+    </option>
+
+    <option>
+      سبب آخر
+    </option>
+
+  </select>
+
+</div>
+
+
+<div class="form-group">
+
+  <label>
+    تفاصيل إضافية
+  </label>
+
+  <textarea
+    id="reportMessage"
+    placeholder="اشرح سبب التبليغ..."></textarea>
+
+</div>
+
+
+<button
+  onclick="sendReport('${propertyId}')">
+
+  إرسال البلاغ
+
+</button>
+```
+
+`);
+
+}
+
+async function sendReport(propertyId){
+
+const reason =
+document.getElementById(
+"reportReason"
+).value;
+
+const message =
+document.getElementById(
+"reportMessage"
+).value.trim();
+
+if(!reason){
+
+```
+toast(
+  "اختر سبب التبليغ"
+);
+
+return;
+```
+
+}
+
+if(!currentUser){
+
+```
+toast(
+  "يجب تسجيل الدخول لإرسال البلاغ"
+);
+
+return;
+```
+
+}
+
+const {
+error
+} =
+await supabaseClient
+
+```
+  .from("reports")
+
+  .insert({
+
+    property_id:
+      propertyId,
+
+    reporter_id:
+      currentUser.id,
+
+    reason,
+
+    message,
+
+    status:
+      "pending"
+
+  });
+```
+
+if(error){
+
+```
+console.error(error);
+
+toast(
+  "تعذر إرسال البلاغ. تأكد من إعداد جدول reports في Supabase."
+);
+
+return;
+```
+
+}
+
+closeModal();
+
+toast(
+"تم إرسال البلاغ للمراجعة ✅"
+);
+
+}
+
+/* =====================================================
+VISIT
+===================================================== */
 
 function requestVisit(propertyId){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openLogin();
+```
+openLogin();
 
-    return;
-  }
-
-
-  openModal(`
-
-    <h2 class="modal-title">
-      📅 طلب زيارة
-    </h2>
-
-    <div class="form-group">
-
-      <label>
-        التاريخ المقترح
-      </label>
-
-      <input
-        id="visitDate"
-        type="date">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        رسالة للمالك
-      </label>
-
-      <textarea
-        id="visitMessage"
-        placeholder="مثال: أفضل الفترة المسائية">
-      </textarea>
-
-    </div>
-
-
-    <button
-      class="btn"
-      style="width:100%"
-      onclick="sendVisit('${propertyId}')">
-      إرسال الطلب
-    </button>
-
-  `);
+return;
+```
 
 }
 
+openModal(`
+
+```
+<h2>
+  📅 طلب زيارة
+</h2>
+
+
+<div class="form-group">
+
+  <label>
+    التاريخ المقترح
+  </label>
+
+  <input
+    id="visitDate"
+    type="date">
+
+</div>
+
+
+<div class="form-group">
+
+  <label>
+    رسالة للمالك
+  </label>
+
+  <textarea
+    id="visitMessage"
+    placeholder="مثال: أفضل الفترة المسائية">
+  </textarea>
+
+</div>
+
+
+<button
+  onclick="sendVisit('${propertyId}')">
+
+  إرسال الطلب
+
+</button>
+```
+
+`);
+
+}
 
 async function sendVisit(propertyId){
 
-  const date =
-    document.getElementById(
-      "visitDate"
-    ).value;
+const date =
+document.getElementById(
+"visitDate"
+).value;
 
-  const message =
-    document.getElementById(
-      "visitMessage"
-    ).value.trim();
+const message =
+document.getElementById(
+"visitMessage"
+).value.trim();
 
+if(!date){
 
-  if(!date){
+```
+toast(
+  "اختر تاريخ الزيارة"
+);
 
-    showToast(
-      "اختر تاريخ الزيارة"
-    );
-
-    return;
-  }
-
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("visit_requests")
-    .insert({
-
-      property_id:propertyId,
-
-      user_id:currentUser.id,
-
-      requested_date:date,
-
-      message,
-
-      status:"pending"
-
-    });
-
-
-  if(error){
-
-    showToast(
-      error.message
-    );
-
-    return;
-  }
-
-
-  closeModal();
-
-  showToast(
-    "تم إرسال طلب الزيارة ✅"
-  );
+return;
+```
 
 }
 
+const {
+error
+} =
+await supabaseClient
 
-/* =========================================================
-   FAVORITES
-========================================================= */
+```
+  .from("visit_requests")
+
+  .insert({
+
+    property_id:
+      propertyId,
+
+    user_id:
+      currentUser.id,
+
+    requested_date:
+      date,
+
+    message,
+
+    status:
+      "pending"
+
+  });
+```
+
+if(error){
+
+```
+toast(
+  error.message
+);
+
+return;
+```
+
+}
+
+closeModal();
+
+toast(
+"تم إرسال طلب الزيارة ✅"
+);
+
+}
+
+/* =====================================================
+FAVORITES
+===================================================== */
 
 async function favorite(propertyId){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openLogin();
+```
+openLogin();
 
-    return;
-  }
-
-
-  const {
-    data
-  } =
-  await supabaseClient
-    .from("favorites")
-    .select("id")
-    .eq(
-      "user_id",
-      currentUser.id
-    )
-    .eq(
-      "property_id",
-      propertyId
-    )
-    .maybeSingle();
-
-
-  if(data){
-
-    await supabaseClient
-      .from("favorites")
-      .delete()
-      .eq(
-        "id",
-        data.id
-      );
-
-    showToast(
-      "تم حذف العقار من المفضلة"
-    );
-
-    return;
-  }
-
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("favorites")
-    .insert({
-
-      user_id:currentUser.id,
-
-      property_id:propertyId
-
-    });
-
-
-  if(error){
-
-    showToast(
-      error.message
-    );
-
-    return;
-  }
-
-
-  showToast(
-    "تمت إضافة العقار إلى المفضلة ❤️"
-  );
+return;
+```
 
 }
 
+const {
+data
+} =
+await supabaseClient
 
-/* =========================================================
-   MY PROPERTIES
-========================================================= */
+```
+  .from("favorites")
+
+  .select("id")
+
+  .eq(
+    "user_id",
+    currentUser.id
+  )
+
+  .eq(
+    "property_id",
+    propertyId
+  )
+
+  .maybeSingle();
+```
+
+if(data){
+
+```
+await supabaseClient
+
+  .from("favorites")
+
+  .delete()
+
+  .eq(
+    "id",
+    data.id
+  );
+
+toast(
+  "تم حذف العقار من المفضلة"
+);
+
+return;
+```
+
+}
+
+const {
+error
+} =
+await supabaseClient
+
+```
+  .from("favorites")
+
+  .insert({
+
+    user_id:
+      currentUser.id,
+
+    property_id:
+      propertyId
+
+  });
+```
+
+if(error){
+
+```
+toast(
+  error.message
+);
+
+return;
+```
+
+}
+
+toast(
+"تمت إضافة العقار إلى المفضلة ❤️"
+);
+
+}
+
+/* =====================================================
+MY PROPERTIES
+===================================================== */
 
 async function showMyProperties(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openLogin();
+```
+openLogin();
 
-    return;
-  }
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("properties")
-    .select(`
-      *,
-      property_images(
-        id,
-        image_path,
-        is_main,
-        sort_order
-      )
-    `)
-    .eq(
-      "owner_id",
-      currentUser.id
-    )
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
-
-
-  if(error){
-
-    showToast(
-      error.message
-    );
-
-    return;
-  }
-
-
-  if(!data || !data.length){
-
-    openModal(`
-
-      <h2 class="modal-title">
-        🏠 عقاراتي
-      </h2>
-
-      <div class="empty">
-        لم تقم بإضافة أي عقار بعد.
-      </div>
-
-      <br>
-
-      <button
-        class="btn"
-        style="width:100%"
-        onclick="openAddProperty()">
-        + أضف أول عقار
-      </button>
-
-    `);
-
-    return;
-  }
-
-
-  openModal(`
-
-    <h2 class="modal-title">
-      🏠 عقاراتي
-    </h2>
-
-    ${data.map(p => {
-
-      const rentType =
-        p.rent_type ||
-        p.rental_type ||
-        "monthly";
-
-
-      let statusText =
-        "⏳ قيد المراجعة";
-
-      let statusClass =
-        "pending";
-
-
-      if(p.status === "approved"){
-
-        statusText =
-          "✅ منشور";
-
-        statusClass =
-          "approved";
-
-      }else if(
-        p.status === "rejected"
-      ){
-
-        statusText =
-          "❌ مرفوض";
-
-        statusClass =
-          "rejected";
-
-      }
-
-
-      return `
-
-        <div style="
-          border:1px solid var(--border);
-          padding:16px;
-          border-radius:11px;
-          margin-bottom:12px;
-          background:#fff">
-
-          <strong>
-            ${escapeHTML(p.title)}
-          </strong>
-
-          <p class="muted">
-
-            ${Number(p.price || 0)
-              .toLocaleString("fr-DZ")}
-
-            DA /
-
-            ${rentLabel(rentType)}
-
-          </p>
-
-          <span class="
-            status
-            ${statusClass}">
-            ${statusText}
-          </span>
-
-        </div>
-
-      `;
-
-    }).join("")}
-
-  `);
+return;
+```
 
 }
 
+const {
+data,
+error
+} =
+await supabaseClient
 
-/* =========================================================
-   CALL
-========================================================= */
+```
+  .from("properties")
+
+  .select(`
+    *,
+    property_images (
+      id,
+      image_path,
+      is_main,
+      sort_order
+    )
+  `)
+
+  .eq(
+    "owner_id",
+    currentUser.id
+  )
+
+  .order(
+    "created_at",
+    {
+      ascending:false
+    }
+  );
+```
+
+if(error){
+
+```
+toast(
+  error.message
+);
+
+return;
+```
+
+}
+
+if(!data.length){
+
+```
+openModal(`
+
+  <h2>
+    🏠 عقاراتي
+  </h2>
+
+  <div class="empty">
+
+    لم تقم بإضافة أي عقار بعد.
+
+  </div>
+
+  <br>
+
+  <button
+    onclick="openAddProperty()">
+
+    + أضف أول عقار
+
+  </button>
+
+`);
+
+return;
+```
+
+}
+
+openModal(`
+
+```
+<h2>
+  🏠 عقاراتي
+</h2>
+
+${data.map(p => `
+
+  <div style="
+    border:1px solid #ddd;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:12px;
+    background:#fff">
+
+    <strong>
+      ${escapeHTML(p.title)}
+    </strong>
+
+    <p class="muted">
+
+      ${priceLabel(
+        p.price,
+        p.rental_period ||
+        "monthly"
+      )}
+
+    </p>
+
+
+    <span class="rental-period">
+
+      🗓️
+      كراء
+      ${periodLabel(
+        p.rental_period ||
+        "monthly"
+      )}
+
+    </span>
+
+
+    <p>
+
+      الحالة:
+
+      <strong>
+
+        ${
+          p.status === "pending"
+
+          ? "⏳ قيد المراجعة"
+
+          : p.status === "approved"
+
+          ? "✅ منشور"
+
+          : p.status === "rejected"
+
+          ? "❌ مرفوض"
+
+          : "🏠 مؤجر"
+
+        }
+
+      </strong>
+
+    </p>
+
+  </div>
+
+`).join("")}
+```
+
+`);
+
+}
+
+/* =====================================================
+CALL OWNER
+===================================================== */
 
 function callOwner(phone){
 
-  if(!phone){
+if(!phone){
 
-    showToast(
-      "رقم الهاتف غير متوفر"
-    );
+```
+toast(
+  "رقم الهاتف غير متوفر"
+);
 
-    return;
-  }
-
-
-  window.location.href =
-    "tel:" + phone;
+return;
+```
 
 }
 
+window.location.href =
+"tel:" + phone;
 
-/* =========================================================
-   START
-========================================================= */
+}
+
+/* =====================================================
+TERMS / PRIVACY
+===================================================== */
+
+function showTerms(){
+
+openModal(`
+
+```
+<h2>
+  📜 شروط الاستخدام
+</h2>
+
+<div class="terms-box">
+
+  <strong>1. طبيعة المنصة</strong>
+
+  <p>
+    KriDari منصة إلكترونية لعرض إعلانات
+    العقارات وربط المستخدمين. المنصة ليست
+    طرفًا في عقد الكراء أو البيع ولا تمثل
+    المالك أو المستأجر.
+  </p>
+
+
+  <strong>2. مسؤولية المستخدم</strong>
+
+  <p>
+    يتحمل ناشر الإعلان مسؤولية المعلومات
+    والصور والأسعار والبيانات التي يقدمها.
+    ويمنع نشر المعلومات المضللة أو الإعلانات
+    الوهمية أو أي محتوى مخالف للقانون.
+  </p>
+
+
+  <strong>3. المعاملات</strong>
+
+  <p>
+    يجب على المستخدم التحقق من العقار
+    والوثائق والهوية والشروط قبل تحويل
+    أي مبلغ أو إبرام أي اتفاق.
+  </p>
+
+
+  <strong>4. البلاغات</strong>
+
+  <p>
+    يمكن للمستخدمين التبليغ عن الإعلانات
+    المشبوهة. تحتفظ KriDari بحق مراجعة
+    الإعلان أو حذفه أو تعليق الحساب عند
+    وجود مخالفة.
+  </p>
+
+
+  <strong>5. المحتوى غير القانوني</strong>
+
+  <p>
+    يمنع استخدام المنصة لنشر أو تسهيل أي
+    نشاط غير قانوني أو احتيالي أو مشبوه.
+  </p>
+
+</div>
+```
+
+`);
+
+}
+
+function showPrivacy(){
+
+openModal(`
+
+```
+<h2>
+  🔒 الخصوصية
+</h2>
+
+<div class="terms-box">
+
+  <p>
+    يتم استخدام البيانات التي يقدمها المستخدم
+    لإنشاء الحساب وتشغيل الخدمات المرتبطة
+    بالمنصة، مثل نشر العقارات وطلبات الزيارة
+    والتواصل المتعلق بالإعلانات.
+  </p>
+
+  <p>
+    يجب على المستخدم عدم نشر معلومات شخصية
+    تخص أشخاصًا آخرين دون إذنهم.
+  </p>
+
+  <p>
+    تسعى KriDari إلى حماية بيانات المستخدمين
+    باستخدام وسائل تقنية مناسبة، إلا أن أي
+    خدمة متصلة بالإنترنت لا يمكن ضمان حمايتها
+    بنسبة 100%.
+  </p>
+
+</div>
+```
+
+`);
+
+}
+
+function showResponsibility(){
+
+openModal(`
+
+```
+<h2>
+  ⚖️ المسؤولية والإعلانات
+</h2>
+
+<div class="terms-box">
+
+  <p>
+    KriDari ليست مالكًا للعقارات المعروضة
+    وليست طرفًا في عقود الكراء.
+  </p>
+
+  <p>
+    المعلومات المنشورة يتم تقديمها من المستخدمين
+    ويجب التحقق منها قبل اتخاذ أي قرار مالي
+    أو قانوني.
+  </p>
+
+  <p>
+    في حال ملاحظة إعلان مشبوه أو احتيالي،
+    يرجى استخدام زر "الإبلاغ عن هذا الإعلان".
+  </p>
+
+  <p>
+    تحتفظ المنصة بحق مراجعة الإعلانات ورفضها
+    أو حذفها وتعليق الحسابات المخالفة وفق
+    سياساتها والقوانين المعمول بها.
+  </p>
+
+</div>
+```
+
+`);
+
+}
+
+/* =====================================================
+START
+===================================================== */
 
 async function start(){
 
-  await loadUser();
+await loadUser();
 
-  await loadProperties();
+await loadProperties();
 
 }
-
 
 start();
 
@@ -3539,4 +3742,3 @@ start();
 
 </body>
 </html>
-```
