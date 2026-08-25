@@ -1,0 +1,34 @@
+name: Center KriDari dialogs
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  center:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Force dialogs to center
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          for name in ['app.html','boot.js']:
+              p=Path(name)
+              if not p.exists(): continue
+              s=p.read_text(encoding='utf-8')
+              if name=='app.html':
+                  s=s.replace('.modal{display:none;position:fixed;inset:0;background:#0000008c;z-index:1000;align-items:center;justify-content:center;padding:15px}', '.modal{display:none;position:fixed;inset:0;background:#0000008c;z-index:1000;align-items:center!important;justify-content:center!important;padding:15px;transform:none!important}')
+                  s=s.replace('.modal.show{display:flex}', '.modal.show{display:flex!important;align-items:center!important;justify-content:center!important}')
+              else:
+                  s=s.replace('.kr-mask{display:none;position:fixed;inset:0;z-index:99999;background:#0009;align-items:center;justify-content:center;padding:14px;font-family:Tahoma}', '.kr-mask{display:none;position:fixed;inset:0;z-index:99999;background:#0009;align-items:center!important;justify-content:center!important;padding:14px;font-family:Tahoma;transform:none!important}')
+                  s=s.replace('.kr-mask.show{display:flex}', '.kr-mask.show{display:flex!important;align-items:center!important;justify-content:center!important}')
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit fix
+        run: |
+          git config user.name "KriDari Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app.html boot.js
+          git diff --cached --quiet || (git commit -m "Fix dialog vertical centering" && git push)
