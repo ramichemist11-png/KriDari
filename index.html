@@ -8,7 +8,14 @@
 <body>
 <div id="l">جاري فتح KriDari…</div>
 <script>
-(async()=>{try{const r=await fetch('/app.html?boot='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('app '+r.status);let html=await r.text();html=html.replace(/https:\/\/cdn\.jsdelivr\.net\/npm\/@supabase\/supabase-js@2/g,'https://unpkg.com/@supabase/supabase-js@2');html=html.replace('</body>','<script src="/final.js?v=20260825"></script></body>');document.open();document.write(html);document.close()}catch(e){console.error(e);document.getElementById('l').textContent='تعذر تشغيل التطبيق. يرجى إعادة تحميل الصفحة.'}})();
+(async()=>{try{
+ const r=await fetch('/app.html?boot='+Date.now(),{cache:'no-store'});
+ if(!r.ok)throw new Error('app '+r.status);
+ let html=await r.text();
+ html=html.replace(/https:\/\/cdn\.jsdelivr\.net\/npm\/@supabase\/supabase-js@2/g,'https://unpkg.com/@supabase/supabase-js@2');
+ html=html.replace('</body>','<scr'+'ipt src="/final.js?v=20260825"></scr'+'ipt></body>');
+ document.open();document.write(html);document.close();
+}catch(e){console.error(e);document.getElementById('l').textContent='تعذر تشغيل التطبيق. يرجى إعادة تحميل الصفحة.'}})();
 </script>
 </body>
 </html>
